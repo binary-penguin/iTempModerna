@@ -19,3 +19,43 @@
 .side-link, .sidebar-item {
     font-family: FL;
 }
+
+.campo-psw {
+    background: #DADADA;
+	border-radius: 5px;
+    border: 0px white;
+}
+
+
+.campo{
+	background: #DADADA;
+	border-radius: 5px;
+    width: 100%;
+    margin-left: 40%;
+}
+
+.btn-warning {
+    color:white;
+    background: #f8b90e;
+    background: -webkit-linear-gradient(59deg, #f0a432, #cfa507);
+    background: linear-gradient(59deg, #f0a432, #fabf22);
+    color: white;
+
+    font-family: FB !important;
+    height: 300%;
+}
+
+p, a {
+    font-family: FL;
+    text-decoration: none;
+}
+
+#txt-modal {
+    font-size: 120%;
+}
+
+.modal-title, .bold-h5 {
+
+    font-family: FB !important;
+    
+}

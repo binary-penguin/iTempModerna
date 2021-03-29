@@ -12156,7 +12156,7 @@ a.sidebar-link {
 a.sidebar-link i,
 a.sidebar-link svg {
     margin-right: 0.75rem;
-    color: #fff;
+    color: rgb(255, 255, 255);
     opacity: 0.3;
 }
 .sidebar-dropdown .sidebar-dropdown .sidebar-link {
@@ -12189,7 +12189,7 @@ a.sidebar-link svg {
 .sidebar-item.active .sidebar-link:hover svg,
 .sidebar-item.active > .sidebar-link i,
 .sidebar-item.active > .sidebar-link svg {
-    color: #fff;
+    color: rgb(255, 255, 255);
     opacity: 0.5;
 }
 .sidebar-dropdown .sidebar-link {
@@ -13354,7 +13354,7 @@ html[data-useragent*="MSIE 10.0"] .toggled.sidebar-collapsed {
 .apexcharts-zoom-icon svg,
 .apexcharts-zoom-in-icon svg,
 .apexcharts-zoom-out-icon svg {
-    fill: #6e8192;
+    fill: #ffffff;
 }
 .apexcharts-selection-icon svg {
     fill: #444;
@@ -13369,7 +13369,7 @@ html[data-useragent*="MSIE 10.0"] .toggled.sidebar-collapsed {
 .dark .apexcharts-zoom-icon svg,
 .dark .apexcharts-zoom-in-icon svg,
 .dark .apexcharts-zoom-out-icon svg {
-    fill: #f3f4f5;
+    fill: #ffffff;
 }
 .apexcharts-canvas .apexcharts-reset-zoom-icon.selected svg,
 .apexcharts-canvas .apexcharts-selection-icon.selected svg,
@@ -24337,5 +24337,3 @@ div.dataTables_wrapper span.select-item {
     border: 3px solid #7c7c7c;
     border-radius: 20px !important;
 }
-
-

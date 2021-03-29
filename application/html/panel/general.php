@@ -1,4 +1,4 @@
-            <div class="main">
+<div class="main">
                 <nav class="navbar navbar-expand navbar-light bg-white">
                     <a class="sidebar-toggle d-flex mr-2">
                         <i class="hamburger align-self-center"></i>
@@ -11,7 +11,7 @@
                                 </a>
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                                    <span class="text-dark"><?=$user?></span>
+                                    <span class="text-dark">112255 Jemuel Flores</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="cuenta.html"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
@@ -36,7 +36,7 @@
                                                 <i class="feather-lg text-warning" data-feather="users"></i>
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$today_entries?></h3>
+                                                <h3 class="mb-2"><?=$totalN_entries?></h3>
                                                 <div class="mb-0">Ingresos</div>
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@
                                                 <i class="feather-lg text-success" data-feather="thermometer"></i>
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$todayG_avg_temp ?> ºC</h3>
+                                                <h3 class="mb-2"><?=$todayG_avg_temp?></h3>
                                                 <div class="mb-0">Temperatura promedio</div>
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6 d-flex">
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
-                                        <span class="badge badge-warning float-right">Semanal</span>
+                                        <span class="badge badge-primary float-right">Semanal</span>
                                         <h5 class="card-title mb-0">Temperatura promedio</h5>
                                     </div>
                                     <div class="card-body">
@@ -76,7 +76,7 @@
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6 d-flex">
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
-                                        <span class="badge badge-warning float-right">Hoy</span>
+                                        <span class="badge badge-primary float-right">Today</span>
                                         <h5 class="card-title mb-0">Distribuci&oacute;n de temperaturas</h5>
                                     </div>
                                     <div class="card-body">
@@ -93,19 +93,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-primary"></i> Bajos</td>
-                                                    <td class="text-right"><?=$totalN_low_temps?></td>
+                                                    <td class="text-right">3</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-success"></i> Normales</td>
-                                                    <td class="text-right"><?=$totalN_avg_temps?></td>
+                                                    <td class="text-right">70</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-danger"></i> Altos</td>
-                                                    <td class="text-right"><?=$totalN_hi_temps?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <td class="text-right"><?=$totalN_hi_temps?></td>
+                                                    <td class="text-right">17</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -120,8 +116,9 @@
                 </main>
             </div>
         </div>
-        <script src="<?= URL?>public/js/settings.js"></script>
-        <script src="<?= URL?>public/js/app.js"></script>
+
+        <script src="<?=URL?>public/js/app.js"></script>
+
         <script>
             $(function () {
                 new Chart(document.getElementById("chartjs-dashboard-scatter").getContext("2d"), {
@@ -133,7 +130,7 @@
 
                                 data: [
                                     {
-                                        x: "Lunes",
+                                        x: 0,
                                         y: 35.7,
                                     },
                                     {
@@ -187,7 +184,7 @@
                         labels: ["Altos", "Normales", "Bajos"],
                         datasets: [
                             {
-                                data: [<?=$totalN_hi_temps?>, <?=$totalN_avg_temps?>, <?=$totalN_low_temps?>],
+                                data: [17, 70, 3],
                                 backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary, "#E8EAED"],
                                 borderColor: "transparent",
                             },

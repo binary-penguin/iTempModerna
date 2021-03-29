@@ -69,7 +69,7 @@ class LoginModel extends Model {
                 }
                 else{
                     // The password does not match
-                    $this->message = "Contra malona Su usuario o contrasena no son correctos.";
+                    $this->message = "Su usuario o contraseña son incorrectos.";
                     $this->auth = 0;
                 }
             }
@@ -82,7 +82,7 @@ class LoginModel extends Model {
         else {
             // The user does not exist
             $this->auth = 0;
-            $this->message = "Su usuario o contrasena no son correctos.";
+            $this->message = "Su usuario o contraseña son incorrectos.";
         }
     }
 

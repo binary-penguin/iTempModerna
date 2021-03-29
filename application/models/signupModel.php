@@ -42,7 +42,7 @@ class SignupModel extends Model {
         while($row = $query->fetch()){
             if($this->e_number==$row['n_empleado']){
                 $this->db_mail = $row['correo'];
-                $this->message = "El numero de emplado ya esta asociado a una cuenta".'<br>';
+                $this->message = "El numero de empleado ya esta asociado a una cuenta".'<br>';
                 $this->permission = 0;
                 break;
             }

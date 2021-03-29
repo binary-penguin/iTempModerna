@@ -58,21 +58,21 @@
     <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="bt-modal">Launch Modal</button>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">&iexcl;Lo sentimos!</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">&iexcl;Lo sentimos!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="txt-modal"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Contacta a Soporte IT</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Entendido</button>
+            </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <p id="txt-modal"></p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Contacta a Soporte IT</button>
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Entendido</button>
-        </div>
-        </div>
-    </div>
     </div>
     <footer class="mainfooter" role="contentinfo">
         <div class="footer-middle">
@@ -85,8 +85,8 @@
                     <div class="col-6 text-end">
                         <h4>Ligas de interes:</h4>
                         <ul class="list-unstyled">
-                            <li><a href="<? URL?>team">>Nuestro equipo</a></li>
-                            <li><a href="<? URL?>csv">>Agrega registros CSV</a></li>
+                            <li><a href="<?= URL?>team">>Nuestro equipo</a></li>
+                            <li><a href="<?= URL?>csv">>Agrega registros CSV</a></li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +102,6 @@
     <!-- Option 1: Bootstrap Bundle with Popper/ -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="<?= URL?>public/js/contra.js"></script> 
-    <script src="<?= URL?>public/js/app.js"></script>
   </body>
 </html>
 <?php if ((isset($auth)) && ($auth == 0)): ?>

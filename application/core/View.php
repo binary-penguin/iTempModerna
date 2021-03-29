@@ -23,21 +23,20 @@ class View {
 
     public function addData($data) {
         ob_end_clean(); // Cleans Last View
+        ob_start();
         extract($data);
         require 'application/html/' . $this->html . '.php';
     }
 
     public function renderPanel($data) {
         //session_start();
-        
-       
         ob_end_clean(); // Cleans Last View
-        ob_start();     // Turns on collector
+        ob_start();
+       
         extract($data);
         require 'application/html/panel/head.php';
         require 'application/html/panel/sidebar.php';
         require 'application/html/panel/' . $this->html . '.php';
-
     }
 
 }

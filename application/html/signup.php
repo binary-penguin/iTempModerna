@@ -60,8 +60,7 @@
                                     </div>
                                     <div class="col-9">
                                         <select name="c_tipo">
-                                            <option value="select-op1">Selecciona</option>
-                                            <option value="regular">Regular</option>
+                                            <option value="regular" selected>Regular</option>
                                             <option value="master">Master</option>
                                         </select>
                                     </div>

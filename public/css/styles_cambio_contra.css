@@ -1,0 +1,17 @@
+.change-pass{
+	width: 40%;
+	}
+
+@media screen and (max-width: 1000px){
+	.change-pass{
+	width: 50%;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.change-pass{
+	width: 100%;
+	}
+}
+
+

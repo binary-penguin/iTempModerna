@@ -1,0 +1,21 @@
+.logo{
+	background: #55BEB3;
+    display: inline-block;
+    height: 3rem;
+}
+
+.title {
+    font-size: 1.0em;
+}
+
+#main-title {
+    font-family: FB;
+    font-size: 110%;
+}
+
+.s-title {
+    font-family: FB;
+}
+.side-link, .sidebar-item {
+    font-family: FL;
+}

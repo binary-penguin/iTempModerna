@@ -1,0 +1,95 @@
+@font-face {
+    font-family: FB;
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url(../fonts/F-Bold.ttf);
+}
+@font-face {
+    font-family: FL;
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url(../fonts/F-Light.ttf);
+}
+
+.header{
+	background: #f8b90e;
+    background: -webkit-linear-gradient(59deg, #cc8b2b, #cfa507);
+    background: linear-gradient(59deg, #b86202, #fabf22);
+    color: white;
+	height: 85px;
+}
+
+
+.logo{
+	background: white;
+	border-radius: 20px;
+    size: 20%;
+    display: inline-block;
+}
+
+
+.card{
+	width: 300px;
+	border:4px solid gray;
+	background-color: #ECECEC;
+	border-radius: 10px;
+}
+
+.campo{
+	background: #DADADA;
+	border-radius: 5px;
+	border: 0px solid white;
+}
+
+.boton{
+    background: -webkit-linear-gradient(59deg, #cc8b2b, #cfa507);
+    background: linear-gradient(59deg, #b86202, #fabf22);
+    color: white;
+
+	border-radius: 5px;
+	border: 0px solid white;
+	color: white;
+	width: 90%;
+	font-size: 20pt;
+    font-family: FB;
+}
+.tx-passw {
+    font-size: 80%;
+    padding-top: 0.5%;
+}
+.general {
+    background-image: url(http://localhost/iTempModerna/public/img/pastas.png);
+    height: 67%;
+}
+.shadow {
+    background: #f8b90e;
+    background: -webkit-linear-gradient(59deg, #f8a82f, #cfa507);
+    background: linear-gradient(59deg, #f8a82f, #fabf22);
+    color: white;
+}
+.footer-us {
+    color: #F09F08;
+}
+
+h5, h4, button {
+    font-family: FB;
+}
+
+p, a {
+    font-family: FL;
+    text-decoration: none;
+}
+
+h1, i {
+    display: inline-block;
+}
+
+.btn-warning {
+    color:white;
+    background: #f8b90e;
+    background: -webkit-linear-gradient(59deg, #f0a432, #cfa507);
+    background: linear-gradient(59deg, #f0a432, #fabf22);
+    color: white;
+}

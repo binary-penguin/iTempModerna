@@ -25,6 +25,7 @@ class UserModel extends Model {
         return crypt($this->psw,'$5$rounds=5000$'.$salt.'$');
     }
 
+    //added test comment for github
     public function changePswUser() {
         $this->hash = $this->hashing();
         $sql = "UPDATE usuario SET contrasena = :contrasena WHERE n_empleado = :n_empleado";

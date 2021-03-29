@@ -1,0 +1,117 @@
+.return{
+	position: absolute;
+	top:10%;
+	left: 5%;
+	transform: translate(-50%,-50%);
+	width: 100px;
+	transform: rotate(180deg);
+	opacity: 1;
+}
+
+.image{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	height: 100px;
+}
+
+.front{
+	height: 100vh;
+	position: relative;
+	padding-top: 5%;
+}
+
+.back{
+	height: 100vh;
+	position: relative;
+	padding-top: 10%;
+}
+
+.header{
+	background-color: #F09F08;
+	height: 200px;
+}
+
+.navbar{
+	background-color: #F09F08;
+}
+.logo{
+	background-color: white;
+	border-radius: 20px;
+	width: 50%;
+	margin-top: 150px;
+}
+
+.account-card{
+	border-radius: 10px;
+}
+
+.logo2{
+	width: 100px;
+	padding-bottom: 12px;
+}
+
+.borde2{
+	background: white;
+	width: 100px;
+	border-radius: 3px;
+	height: 15px;
+}
+
+.borde_imagen{
+	width: 55%;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.card{
+	width: 90%;
+	border:4px solid gray;
+	background-color: #ECECEC;
+	border-radius: 10px;
+	min-height: 400px;
+}
+
+
+.campo{
+	background: #DADADA;
+	border-radius: 5px;
+    width: 100%;
+    margin-left: 40%;
+}
+
+.campo-psw {
+    background: #DADADA;
+	border-radius: 5px;
+    border: 0px white;
+}
+.boton{
+	background: #F09F08;
+	border-radius: 5px;
+	border: 0px solid white;
+	color: black;
+	width: 90%;
+	font-size: 20pt;
+}
+
+.main_content{
+	background-image: url("../img/pastas.jpg");
+	height: 70vh;
+}
+
+.options{
+	font-size: 7pt;
+}
+
+@media screen and (max-width: 1000px){
+	.logo{
+	width: 80%;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.logo{
+	width: 90%;
+	}
+}

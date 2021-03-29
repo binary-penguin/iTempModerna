@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="css/estilos.css" />
+        <script type="text/javascript" src="js/contra.js"></script>
+        <link rel="icon" href="imagenaranja.png">
+
+        <title>Sign up</title>
+    </head>
+    <body>
+        <div class="header container-fluid pt-5" align="center">
+            <div class="borde_imagen">
+                <img src="img/moderna2.png" class="logo" />
+            </div>
+        </div>
+        <form name="signup">
+            <div class="main_content">
+                <div class="row">
+                    <div class="col-l-12 pt-5" align="center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Registrarme</h5>
+                                <p class="card-text">Número de empleado</p>
+                                <input type="text" name="c_usuario" class="campo" />
+                                <p class="card-text">Correo</p>
+                                <input type="email" name="c_usuario" class="campo" />
+                                <p class="card-text">Contraseña</p>
+                                <input type="password" name="c_contra" class="campo" id="c_contra" />
+                                <div class="row">
+                                    <div class="col-3" align="rigth">
+                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar()" />
+                                    </div>
+                                    <div class="col-9" align="left">
+                                        <p class="card-text">Mostrar contraseña</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="card-text">Tipo</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <select name="c_tipo" class="campo">
+                                            <option value="regular">Regular</option>
+                                            <option value="master">Master</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <p class="card-text">Permisos</p>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta1" value="mofesa" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Mofesa Navojoa PROFACE X</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta2" value="vig_pirineos" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">VIGILANCIA PIRINEOS PROFACE XTD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta3" value="prod_pirineos" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Producción Pirineos PROFACE XTD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta4" value="mosusa" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">MOSUSA Vigilancia PROFACE XTD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta5" value="pastas_mex" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Entrada pastas Mexicali SPEEDFACE TD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta6" value="leandro" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Planta "B" Leandro Valle SPEEDFACE TD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta7" value="sobre" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Pasta en sobre SPEEDFACE TD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta8" value="palmillas" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">CEDI Palmillas SPEEDFACE TD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta9" value="papeles" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Papeles SPEEDFACE TD</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="planta10" value="gon_ortega" />
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="card-text options">Planta "A" González Ortega SPEEDFACE</p>
+                                    </div>
+                                </div>
+                                <input type="button" name="b_submit" value="Registrarme" class="boton" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    </body>
+</html>
+

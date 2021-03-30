@@ -133,7 +133,8 @@
                             </center>
                             <form action="<?php echo URL?>user/update" method="POST">
                                 <h5 class="bold-h5">Nueva contraseña</h5>
-                                <input type="password" name="c_contra" class="campo-psw" id="c_contra" />
+                                
+                                <input type="password" name="psw" class="campo-psw" id="psw" />
                                 <br>
                                 <div class="row">
                                     <div class="col-12">
@@ -143,12 +144,19 @@
                                 </div>
                                 <br>
                                 <h5 class="bold-h5">Vuelva a introducir la contraseña</h5>
-                                <input type="password" name="c_contra2" class="campo-psw" id="c_contra2" />
+                                <input type="password" name="confirm_password" class="campo-psw" id="confirm_password" />
                                 <br>
                                 <div class="row">
                                     <div class="col-12">
                                         <input type="checkbox" name="mostrar_contra" class="campo-psw" onclick="mostrar()"/>
                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
+                                    </div>
+                                    <div id="message">
+                                        <h4>La contraseña debe tener al menos 8 caracteres, mayusculas, minusculas y un numero</h4>
+                                        <p id="letter" class="invalid">Una letra <b>minuscula</b></p>
+                                        <p id="capital" class="invalid">Una Letra <b>mayuscula</b></p>
+                                        <p id="number" class="invalid">Un <b>numero</b></p>
+                                        <p id="length" class="invalid">Y ser mayor a <b>8 caracters</b></p>
                                     </div>
                                 </div>
                                 <br><br>

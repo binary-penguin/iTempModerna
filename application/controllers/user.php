@@ -12,7 +12,7 @@ class User extends Controller {
     public function update() {
         if (isset($_POST["b_cambiar_contra"])) {
             $this->model->setUser("10");
-            $this->model->setPassword($_POST["c_contra"]);
+            $this->model->setPassword($_POST["psw"]);
             $this->model->changePswUser();
         }
     }

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <title>iTemp</title>
+
+        <link rel="stylesheet" href="css/general.css" />
+        <script src="js\settings.js"></script>
+        <script src="js/contra.js"></script>
+        <link rel="icon" href="imagenaranja.png">
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="../css/estilos.css" />
+    <script src="../js/contra.js"></script>
+    <style>
+        .prompt {
+            font-size: small;
+            color: #F00;
+        }
+        /* Style all input fields */
+        /* Style the submit button */
+        
+        input[type=submit] {
+            background-color: #f1b717;
+            color: white;
+        }
+        /* Style the container for inputs */
+        
+        input:hover {
+            background-color: #926b00;
+        }
+        
+        .container {
+            background-color: #f1f1f1;
+            padding: 15px;
+        }
+        /* The message box is shown when the user clicks on the password field */
+        
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        #message p {
+            padding: 10px 30px;
+            font-size: 15px;
+        }
+        /* Add a green text color and a checkmark when the requirements are right */
+        
+        .valid {
+            color: green;
+        }
+        
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "✔";
+        }
+        /* Add a red text color and an "x" when the requirements are wrong */
+        
+        .invalid {
+            color: rgb(211, 150, 20);
+        }
+        
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+
+        .campo{
+            border-radius: 5px;
+            border: 0px solid black;
+            background:#C4BCBC;
+        }
+        .boton{
+            background: #F09F08;
+            border-radius: 5px;
+            border: 0px solid white;
+            color: black;
+            width: 50%;
+            font-size: 20pt;
+        }
+        .card{
+            width: 90%;
+            border:4px solid gray;
+            background-color: #ECECEC;
+            border-radius: 10px;
+            min-height: 400px;
+        }
+        .options,a{
+            font-size: 10pt;
+        }
+        .account-card{
+            display:flex;
+            justify-content:center;
+        }
+        @media screen and (max-width:450px){
+            .boton{
+                font-size:15pt;
+            }
+        }
+        
+    </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <nav id="sidebar" class="sidebar">
+                <div class="sidebar-content">
+                    <a class="sidebar-brand" href="index.html">
+                        <i class="align-middle" data-feather="thermometer"></i>
+                        <span class="align-middle" id="main-title">iTemp Moderna</span>
+                    </a>
+
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-header">Explora</li>
+
+                        <li class="sidebar-item">
+                            <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle" data-feather="sliders"></i> <span class="align-middle s-title">Gráficas</span> </a>
+                            <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="general.html">
+                                        General
+                                        <span class="sidebar-badge badge badge-info">224</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="pirineos1.html">Pirineos I <span class="sidebar-badge badge badge-primary">100</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="pirineos1.html">
+                                        Pirineos II
+                                        <span class="sidebar-badge badge badge-primary">95</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="pirineos1.html">
+                                        Pirineos III
+                                        <span class="sidebar-badge badge badge-primary">25</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="pirineos1.html">
+                                        Pirineos IIII
+                                        <span class="sidebar-badge badge badge-primary">108</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#pages" data-toggle="collapse" class="sidebar-link collapsed"> <i class="align-middle" data-feather="layout"></i> <span class="align-middle s-title">Reportes</span></a>
+                            <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Altas <span class="sidebar-badge badge badge-primary">Hoy</span></a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Medias <span class="sidebar-badge badge badge-primary">Hoy</span></a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Bajas <span class="sidebar-badge badge badge-primary">Hoy</span></a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Altas <span class="sidebar-badge badge badge-primary">Semanal</span></a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Medias <span class="sidebar-badge badge badge-primary">Semanal</span></a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="tablas.html">Temperaturas Bajas <span class="sidebar-badge badge badge-primary">Semanal</span></a>
+                                </li>
+
+                                <li class="sidebar-item"><a class="sidebar-link" href="tablas.html">Personalizado</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="main">
+                <nav class="navbar navbar-expand navbar-light bg-white">
+                    <a class="sidebar-toggle d-flex mr-2">
+                        <i class="hamburger align-self-center"></i>
+                    </a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                                    <i class="align-middle" data-feather="settings"></i>
+                                </a>
+
+                                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                                    <span class="text-dark">112255 Jemuel Flores</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="cuenta.html"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
+                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="row pl-4 pr-4">
+                    <div class="col-lg-12 col-sm-12 pt-5 account-card">
+                        <div class="card">
+                            <form name="signup" method="POST">
+                                <div class="main_content">
+                                    <div class="row">
+                                        <div class="col-l-12 pt-5" align="center">
+                                            
+                                            <div class="card-body">
+                                                <h5 class="card-title">Registrarme</h5>
+                                                <p class="card-text">Número de empleado</p>
+                                                <input type="text" name="e_number" maxlength="6" class="campo" required>
+                                                <p id="msg" class="prompt"></p>
+                                                <p class="card-text">Correo</p>
+                                                <input type="email" name="mail" class="campo" required>
+                                                <p id="msg2" class="prompt"></p>
+                                                <p class="card-text">Contraseña</p>
+                                                <input type="password" id="psw" name="psw" class="campo" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                                                <div class="row">
+                                                    <div class="col-3" align="rigth">
+                                                        <input type="checkbox" id="c_contra" onclick="mostrar_c()" />
+                                                    </div>
+                                                    <div class="col-9" align="left">
+                                                        <p class="card-text">Mostrar contraseña</p>
+                                                    </div>
+                                                    <div id="message">
+                                                        <h4>La contraseña debe tener al menos 8 caracteres, mayusculas, minusculas y un numero</h4>
+                                                        <p id="letter" class="invalid">Una letra <b>minuscula</b></p>
+                                                        <p id="capital" class="invalid">Una Letra <b>mayuscula</b></p>
+                                                        <p id="number" class="invalid">Un <b>numero</b></p>
+                                                        <p id="length" class="invalid">Y ser mayor a <b>8 caracters</b></p>
+                                                    </div>
+                                                </div>
+                    
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <p class="card-text">Tipo</p>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <select name="c_tipo">
+                                                                <option value="select-op1">Selecciona</option>
+                                                                <option value="regular">Regular</option>
+                                                                <option value="master">Master</option>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <p class="card-text">Permisos</p>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="cjrz194960019" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Mofesa Navojoa PROFACE X</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjb201760199" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">VIGILANCIA PIRINEOS PROFACE XTD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjb201760210" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Producción Pirineos PROFACE XTD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjb202360417" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">MOSUSA Vigilancia PROFACE XTD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf201860194" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Entrada pastas Mexicali SPEEDFACE TD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf202060537" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Planta "B" Leandro Valle SPEEDFACE TD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf202060559" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Pasta en sobre SPEEDFACE TD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf202060575" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">CEDI Palmillas SPEEDFACE TD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf202460678" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Papeles SPEEDFACE TD</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <input type="checkbox" name="planta[]" value="ckjf202560083" />
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <p class="card-text options">Planta "A" González Ortega SPEEDFACE</p>
+                                                    </div>
+                                                </div>
+                                                <input type="submit" name="b_submit" value="Registrarme" class="boton" />
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js\app.js"></script>
+        <script>
+            var myInput = document.getElementById("psw");
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length");
+            myInput.onfocus = function() {
+                document.getElementById("message").style.display = "block";
+            }
+            myInput.onblur = function() {
+                document.getElementById("message").style.display = "none";
+            }
+            myInput.onkeyup = function() {
+                var lowerCaseLetters = /[a-z]/g;
+                if (myInput.value.match(lowerCaseLetters)) {
+                    letter.classList.remove("invalid");
+                    letter.classList.add("valid");
+                } else {
+                    letter.classList.remove("valid");
+                    letter.classList.add("invalid");
+                }
+                var upperCaseLetters = /[A-Z]/g;
+                if (myInput.value.match(upperCaseLetters)) {
+                    capital.classList.remove("invalid");
+                    capital.classList.add("valid");
+                } else {
+                    capital.classList.remove("valid");
+                    capital.classList.add("invalid");
+                }
+                var numbers = /[0-9]/g;
+                if (myInput.value.match(numbers)) {
+                    number.classList.remove("invalid");
+                    number.classList.add("valid");
+                } else {
+                    number.classList.remove("valid");
+                    number.classList.add("invalid");
+                }
+                if (myInput.value.length >= 8) {
+                    length.classList.remove("invalid");
+                    length.classList.add("valid");
+                } else {
+                    length.classList.remove("valid");
+                    length.classList.add("invalid");
+                }
+            }
+        </script>
+    </body>
+</html>

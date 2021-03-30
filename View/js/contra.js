@@ -6,6 +6,14 @@ function mostrar(){
 		x.type="password";
 	}
 }
+function mostrar_c(){
+	x=document.getElementById("psw");
+	if(x.type == "password"){
+		x.type="text";
+	}else{
+		x.type="password";
+	}
+}
 
 function iniciar_sesion(){
 	usr=document.login.c_usuario.value;

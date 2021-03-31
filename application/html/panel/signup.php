@@ -85,14 +85,24 @@
                                                 <br><br>
 
                                                 <h5 class="bold-h5">Contraseña</h5>
-                                                <input type="password" id="c_contra" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
+                                                <input type="password" id="psw" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar();"/>
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar(document.getElementById('psw'));"/>
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>
+                                                <br>
+                                                <h5 class="bold-h5">Vuelva a introducir la contraseña</h5>
+                                                <input type="password" id="confirm_password" name="confirm_password" class="campo-psw" title="" required>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar(document.getElementById('confirm_password'));"/>
+                                                        <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
+                                                    </div>
+                                            </div>
                                                 <div id="message">
                                                     <p id="letter" class="invalid">1 Letra <b>minúscula</b></p>
                                                     <p id="capital" class="invalid">1 Letra <b>mayúscula</b></p>
@@ -229,8 +239,23 @@
                             </div>
                         </div>
         
-        <script>
-            var myInput = document.getElementById("c_contra");
+        
+
+    <script>
+            var password = document.getElementById("psw"),
+                confirm_password = document.getElementById("confirm_password");
+
+            function validatePassword() {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Favor de revisar contraseña");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+            var myInput = document.getElementById("psw");
             var letter = document.getElementById("letter");
             var capital = document.getElementById("capital");
             var number = document.getElementById("number");
@@ -275,6 +300,7 @@
                 }
             }
         </script>
+
         <script>
             function clearMsg(){
                 //if php variable is !false (permission != false)

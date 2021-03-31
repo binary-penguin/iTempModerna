@@ -43,4 +43,10 @@ class UserModel extends Model {
         $this->e_number = $e_number;
     }
 
+    public function getData(){
+        return [
+            "user" => $this->e_number,
+        ];
+    }
+
 }

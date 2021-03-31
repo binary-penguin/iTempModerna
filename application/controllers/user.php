@@ -7,15 +7,16 @@ class User extends Controller {
 
         $this->model = $this->loadModel('userModel');
         $this->view = $this->loadView('userView', 'user');
-        $this->view->renderHtml();
+        $this->view->renderPanel($this->model->getData());
 
     }
 
     public function update() {
         if (isset($_POST["b_cambiar_contra"])) {
-            $this->model->setUser("10");
+            $this->model->setUser($_SESSION['USER']);
             $this->model->setPassword($_POST["psw"]);
             $this->model->changePswUser();
+            $this->view->renderPanel($this->model->getData());
         }
     }
 }

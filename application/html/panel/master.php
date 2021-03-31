@@ -75,21 +75,21 @@
                                             <br>
                                             <form action="<?php echo URL?>master/update" method="POST">
                                                 <h5 class="bold-h5">Nueva contraseña</h5>
-                                                <input type="password" id="c_contra" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
+                                                <input type="password" id="psw" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar()"/>
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar(document.getElementById('psw'));"/>
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <h5 class="bold-h5">Vuelva a introducir la contraseña</h5>
-                                                <input type="password" id="c_contra2" name="c_contra2" class="campo-psw" title="" required>
+                                                <input type="password" id="confirm_password" name="c_contra2" class="campo-psw" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar()"/>
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar(document.getElementById('confirm_password'));"/>
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>
@@ -299,6 +299,7 @@
         </script>
         <script>loadLocations();</script>
         <script src="<?=URL?>public/js/app.js"></script>
+        <script src="<?= URL?>public/js/contra.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
     </body>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <div class="chart chart-lg">
+        <canvas id="chartjs-dashboard-line"></canvas>
+    </div>
+    <script>
+        new Chart(document.getElementById("chartjs-dashboard-line"){
+				type: 'line',
+				data: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+					datasets: [{
+						label: 'My First dataset',
+						backgroundColor: window.chartColors.red,
+						borderColor: window.chartColors.red,
+						data: [10, 23, 5, 99, 67, 43, 0],
+						fill: false,
+						pointRadius: 10,
+						pointHoverRadius: 15,
+						showLine: false // no line shown
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: 'Point Style: ' + pointStyle
+					},
+					legend: {
+						display: false
+					},
+					elements: {
+						point: {
+							pointStyle: pointStyle
+						}
+					}
+				}
+			};
+    </script>
+</body>
+</html>

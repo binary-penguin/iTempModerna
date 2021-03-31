@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/general.css" />
         <script src="js\settings.js"></script>
         <link rel="icon" href="imagenaranja.png">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
 
     <body>
@@ -161,7 +162,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="chart chart-lg">
-                                            <canvas id="chartjs-dashboard-scatter"></canvas>
+                                            <div id="chart-scatter"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -212,60 +213,15 @@
 
         <script src="js\app.js"></script>
         <script>
-            $(function () {
-                new Chart(document.getElementById("chartjs-dashboard-scatter").getContext("2d"), {
-                    type: "scatter",
-                    data: {
-                        datasets: [
-                            {
-                                label: "Temperaturas promedio ultima semana",
-
-                                data: [
-                                    {
-                                        x: 0,
-                                        y: 35.7,
-                                    },
-                                    {
-                                        x: "Lunes",
-                                        y: 36,
-                                    },
-                                    {
-                                        x: 2,
-                                        y: 35.2,
-                                    },
-                                    {
-                                        x: 3,
-                                        y: 36.5,
-                                    },
-                                    {
-                                        x: 4,
-                                        y: 38,
-                                    },
-                                    {
-                                        x: 5,
-                                        y: 38.2,
-                                    },
-                                    {
-                                        x: 6,
-                                        y: 35.5,
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    options: {
-                        scales: {
-                            xAxes: [
-                                {
-                                    type: "linear",
-                                    position: "bottom",
-                                },
-                            ],
-                        },
-                    },
-                });
-                // Line chart
-            });
+            function getData(){
+                return Math.random();
+            }
+            Plotly.plot('chart-scatter', [{
+                y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
+                x:['lunes','martes','miercoles','jueves','viernes','sabado','domingo'],
+                type: 'line',
+                mode: 'markers'
+            }])
         </script>
         <script>
             $(function () {

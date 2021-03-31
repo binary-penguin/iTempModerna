@@ -27,6 +27,13 @@
     width: 30%;
 }
 
+.campo-psw-user {
+    background: #DADADA;
+	border-radius: 5px;
+    border: 0px white;
+    width: 15%;
+}
+
 
 .campo{
 	background: #DADADA;

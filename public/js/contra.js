@@ -1,9 +1,8 @@
-function mostrar(){
-	x=document.getElementById("c_contra");
-	if(x.type == "password"){
-		x.type="text";
+function mostrar(id){
+	if(id.type == "password"){
+		id.type="text";
 	}else{
-		x.type="password";
+		id.type="password";
 	}
 }
 

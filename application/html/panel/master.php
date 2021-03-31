@@ -59,13 +59,14 @@
                         </div>
                         <div class="container-fluid p-0">
                             <div class="row">
-                                <div class="col-12 col-sm-6 col-xl d-flex text-center">
+                                <div class="col-12 col-xl d-flex text-center">
                                     <div class="card flex-fill">
                                         <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-3">
+                                                    <div class="col-md-12 col-lg-3 col-xl-3">
                                                         <i class="feather-lg text-primary" data-feather="key"></i>
                                                         <h3>Cambiar Contraseña</h3>
+                                                        <br>
                                                     </div>
                                                 </div>
 
@@ -99,14 +100,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6 col-xl d-flex text-center">
+                                <div class="col-12 col-xl d-flex text-center">
                                     <div class="card flex-fill">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-3">
-                                                    <i class="feather-lg text-primary" data-feather="eye-off"></i>
-                                                    <h3>Cambiar Permisos</h3>
-                                                </div>
+                                                    <div class="col-md-12 col-lg-3 col-xl-3">
+                                                        <i class="feather-lg text-primary" data-feather="eye-off"></i>
+                                                        <h3>Cambiar Permisos</h3>
+                                                        <br>
+                                                    </div>
                                             </div>
                                             <h3><?=$db_name?></h3>
                                             <h5 class="card-title bold-h5">Número de empleado: <?=$user?></h5>

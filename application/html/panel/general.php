@@ -14,8 +14,8 @@
                                     <span class="text-dark">112255 Jemuel Flores</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="cuenta.html"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
-                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="<?=URL?>account"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
+                                    <a class="dropdown-item" href="<?=URL?>login">Cerrar sesión</a>
                                 </div>
                             </li>
                         </ul>

@@ -75,7 +75,7 @@
                                             <br>
                                             <form action="<?php echo URL?>master/update" method="POST">
                                                 <h5 class="bold-h5">Nueva contraseña</h5>
-                                                <input type="password" name="c_contra" class="campo-psw" id="c_contra" />
+                                                <input type="password" id="c_contra" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
@@ -85,7 +85,7 @@
                                                 </div>
                                                 <br>
                                                 <h5 class="bold-h5">Vuelva a introducir la contraseña</h5>
-                                                <input type="password" name="c_contra2" class="campo-psw" id="c_contra2" />
+                                                <input type="password" id="c_contra2" name="c_contra2" class="campo-psw" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
@@ -93,7 +93,13 @@
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>
-                                                <br><br>
+                                                <div id="message">
+                                                    <p id="letter" class="invalid">1 Letra <b>minúscula</b></p>
+                                                    <p id="capital" class="invalid">1 Letra <b>mayúscula</b></p>
+                                                    <p id="number" class="invalid">1 Dígito <b> numérico</b></p>
+                                                    <p id="length" class="invalid">Y ser mayor a <b>8 caracteres</b></p>
+                                                </div>
+                                                <br>
                                                 <input type="text" value="<?=$user?>" class="d-none" name="t_user"/>
                                                 <input type="submit" name="b_cambiar_contra" class="btn btn-danger" value="Cambiar contraseña" />
                                             </form>
@@ -239,7 +245,58 @@
         </div>
 
         
-
+        <script>
+            var myInput = document.getElementById("c_contra");
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length");
+            myInput.onfocus = function() {
+                document.getElementById("message").style.display = "block";
+            }
+            myInput.onblur = function() {
+                document.getElementById("message").style.display = "none";
+            }
+            myInput.onkeyup = function() {
+                var lowerCaseLetters = /[a-z]/g;
+                if (myInput.value.match(lowerCaseLetters)) {
+                    letter.classList.remove("invalid");
+                    letter.classList.add("valid");
+                } else {
+                    letter.classList.remove("valid");
+                    letter.classList.add("invalid");
+                }
+                var upperCaseLetters = /[A-Z]/g;
+                if (myInput.value.match(upperCaseLetters)) {
+                    capital.classList.remove("invalid");
+                    capital.classList.add("valid");
+                } else {
+                    capital.classList.remove("valid");
+                    capital.classList.add("invalid");
+                }
+                var numbers = /[0-9]/g;
+                if (myInput.value.match(numbers)) {
+                    number.classList.remove("invalid");
+                    number.classList.add("valid");
+                } else {
+                    number.classList.remove("valid");
+                    number.classList.add("invalid");
+                }
+                if (myInput.value.length >= 8) {
+                    length.classList.remove("invalid");
+                    length.classList.add("valid");
+                } else {
+                    length.classList.remove("valid");
+                    length.classList.add("invalid");
+                }
+            }
+        </script>
+        <script>
+            function clearMsg(){
+                //if php variable is !false (permission != false)
+                document.getElementById("msg").innerHTML = "";
+            }
+        </script>
         <script>loadLocations();</script>
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

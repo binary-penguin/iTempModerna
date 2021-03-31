@@ -34,10 +34,10 @@
                                 <input  type="text" name="c_usuario" class="campo" required
                                         maxlength = 30>
                                 <p class="card-text mt-2">Contraseña</p>
-                                <input type="password" name="c_contra" class="campo" id="c_contra" required>
+                                <input type="password" name="c_contra" class="campo" id="psw" required>
                                 <div class="row mb-5">
                                     <div class="col-4 text-end">
-                                        <input  type="checkbox" name="mostrar_contra" onclick="mostrar()" class="mt-1"
+                                        <input  type="checkbox" name="mostrar_contra" onclick="mostrar(document.getElementById('psw'));" class="mt-1"
                                                 maxlength = 30>
                                     </div>
                                     <div class="col-8 text-start">
@@ -101,6 +101,7 @@
    
     <!-- Option 1: Bootstrap Bundle with Popper/ -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="<?=URL?>public/js/app.js"></script>
     <script src="<?= URL?>public/js/contra.js"></script> 
   </body>
 </html>

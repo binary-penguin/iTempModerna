@@ -67,51 +67,7 @@ class HomeModel extends Model {
                     
                     // Succesfull login!
                     session_start();
-
-                    // NAME
-                    $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
-                    $query = $this->db->prepare($sql);
-                    $query->execute(array(':e_number' => $this->user));
-                    $row = $query->fetchAll();
-
-                    $_SESSION['NAME'] = $row[0]["nombre_completo"];
-
-                    // LOCATIONS
-                    $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
-                    $query = $this->db->prepare($sql);
-                    //change data to the correct database table names
-                    $query->execute(array(":e_number" => $this->user));
-
-                    $this->locations = [];
-
-                    while($row = $query->fetch()){
-                        // GET LOCATION NAMES
-
-                        $sql2 = "SELECT descripcion FROM lector WHERE clave = :cve_ubicacion";
-                        $query2 = $this->db->prepare($sql2);
-                        //change data to the correct database table names
-                        $query2->execute(array(":cve_ubicacion" => $row['cve_ubicacion']));
-
-                        while($row2 = $query2->fetch()){
-                            $this->locations[] = $row2['descripcion'];
-                        }
-                        
-                        
-                    }
-
-                    $_SESSION['LOCATIONS'] = $this->locations;
-                    
-                    $_SESSION['USER'] = $this->user;
-
-
-                    // Send e-mail new session
-
-                    $to = "jafp070901@hotmail.com";
-                    $subject = "Inicio de sesion exitoso!";
-                    $message = "Hola Jorge!\n Nos alegra verte de vuelta :)\n";
-                    $headers = "From: iTemp Moderna\r\nReply-To: jafp07@gmail.com";
-                    mail($to, $subject, $message, $headers);
-
+                    $this->prepareSession();
 
                     header("Location:" . URL . "general");
                     $this->auth = 1;
@@ -133,6 +89,95 @@ class HomeModel extends Model {
             $this->auth = 0;
             $this->message = "Su usuario o contraseña son incorrectos.";
         }
+    }
+
+    private function prepareSession() {
+        // GET SESSION NAME
+        $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':e_number' => $this->user));
+        $row = $query->fetchAll();
+
+        $_SESSION['NAME'] = $row[0]["nombre_completo"];
+
+        // GET SESSION LOCATIONS (NAME)
+        $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
+        $query = $this->db->prepare($sql);
+        //change data to the correct database table names
+        $query->execute(array(":e_number" => $this->user));
+
+        $this->locations_name = [];
+        $this->location_cve = [];
+
+        while($row = $query->fetch()){
+            $this->locations_cve[] = $row['cve_ubicacion'];
+
+            $sql2 = "SELECT descripcion FROM lector WHERE clave = :cve_ubicacion";
+            $query2 = $this->db->prepare($sql2);
+            //change data to the correct database table names
+            $query2->execute(array(":cve_ubicacion" => $row['cve_ubicacion']));
+
+            while($row2 = $query2->fetch()){
+                $this->locations_name[] = $row2['descripcion'];
+            }
+            
+            
+        }
+        $_SESSION['LOCATIONS-CVE'] = $this->locations_cve;
+        $_SESSION['LOCATIONS-NAME'] = $this->locations_name;
+
+        
+        // GET SESSION USER NUMBER
+        $_SESSION['USER'] = $this->user;
+
+        
+
+        // SEND MAIL NOTIFICATION
+        $this->sendMail("jafp070901@hotmail.com",
+                        "Inicio de sesion exitoso!");
+
+        
+
+    }
+
+    public function sendMail($to, $subject) {
+
+        // Message
+        $message = '
+        <html>
+        <head>
+        <title>Birthday Reminders for August</title>
+        </head>
+        <body>
+        <table>
+        <p>Here are the birthdays upcoming in Auguestación!</p>
+            <tr>
+            <th>Person</th><th>Day</th><th>Month</th><th>Year</th>
+            </tr>
+            <tr>
+            <td>Johny</td><td>10th</td><td>August</td><td>1970</td>
+            </tr>
+            <tr>
+            <td>Sally</td><td>17th</td><td>August</td><td>1973</td>
+            </tr>
+        </table>
+        </body>
+        </html>
+        ';
+
+        $message = utf8_encode($message);
+
+        // To send HTML mail, the Content-type header must be set
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=utf-8';
+
+        // Additional headers
+        $headers[] = 'To: = <' . $to . '>';
+        $headers[] = 'From: iTemp Moderna <noreply@moderna.com>';
+
+        // Mail it
+        mail($to, $subject, $message, implode("\r\n", $headers));
+
     }
 
     public function getData() {

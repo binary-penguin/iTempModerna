@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class View {
     private $html;
@@ -29,14 +30,22 @@ class View {
     }
 
     public function renderPanel($data) {
-        //session_start();
-        ob_end_clean(); // Cleans Last View
-        ob_start();
-       
-        extract($data);
-        require 'application/html/panel/head.php';
-        require 'application/html/panel/sidebar.php';
-        require 'application/html/panel/' . $this->html . '.php';
+
+        if (isset($_SESSION['USER'])) {
+            //session_start();
+            ob_end_clean(); // Cleans Last View
+            ob_start();
+
+            extract($data);
+            require 'application/html/panel/head.php';
+            require 'application/html/panel/sidebar.php';
+            require 'application/html/panel/' . $this->html . '.php';
+        }
+
+        else {
+            header("Location:" . URL . "error404");
+        }
+        
     }
 
 }

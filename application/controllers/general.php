@@ -1,6 +1,6 @@
 <?php
 // Start session
-session_start();
+//session_start();
 
 class General extends Controller {
     function __construct() {

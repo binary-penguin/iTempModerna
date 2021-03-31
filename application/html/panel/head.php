@@ -1,6 +1,4 @@
  <?php 
-// Start session
-session_start();
 
     //$user = "Ricardo González";
     $locationsSESSION = [array("name" => "Pirineos I", 

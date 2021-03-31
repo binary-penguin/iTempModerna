@@ -1,13 +1,12 @@
 <?php
-
-class Login extends Controller {
+class Home extends Controller {
     function __construct() {
-        $this->model = $this->loadModel('loginModel');
-        $this->view = $this->loadView('loginView', 'login');
+        $this->model = $this->loadModel('HomeModel');
+        $this->view = $this->loadView('HomeView', 'home');
         $this->view->renderHtml();
     }
 
-    public function auth() {
+    public function login() {
         // If the user is submitted then validate the credentials
         if (isset($_POST["submit_user"])) {
             
@@ -23,6 +22,10 @@ class Login extends Controller {
             //echo var_dump($this->model->getData());
         
         }
+    }
+
+    public function logout(){
+        session_destroy();
     }
 
 

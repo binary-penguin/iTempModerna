@@ -1,8 +1,3 @@
-<?php
-// Start session
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,7 +23,7 @@ session_start();
         </div>
     </div>
     <div class="container-fluid general mt-4">
-        <form name="login" method="POST" action="<?= URL ?>login/auth">
+        <form name="login" method="POST" action="<?= URL ?>home/login">
             <div class="main_content">
                 <div class="row">
                     <div class="col-l-12 mt-5 pt-5" align="center">

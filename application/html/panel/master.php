@@ -40,11 +40,11 @@
                                 </a>
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                                    <span class="text-dark">112255 Jemuel Flores</span>
+                                    <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="<?=URL?>account"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
-                                    <a class="dropdown-item" href="<?=URL?>login">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="<?=URL?>home/logout">Cerrar sesión</a>
                                 </div>
                             </li>
                         </ul>

@@ -1,8 +1,7 @@
 <?php
-// Start session
-session_start();
 
-class LoginModel extends Model {
+
+class HomeModel extends Model {
     private $user;
     private $password;
     private $hash;
@@ -65,7 +64,15 @@ class LoginModel extends Model {
                 if(hash_equals($db_hash, $hashed_psw)==1){
                     // Succesfull login!
                     session_start();
+
+                    $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
+                    $query = $this->db->prepare($sql);
+                    $query->execute(array(':e_number' => $this->user));
+                    $row = $query->fetchAll();
+
+                    $_SESSION['NAME'] = $row[0]["nombre_completo"];
                     $_SESSION['USER'] = $this->user;
+
                     header("Location:" . URL . "general");
                     $this->auth = 1;
                 }

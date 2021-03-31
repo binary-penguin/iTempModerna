@@ -1,6 +1,6 @@
 <?php
 // Start session
-session_start();
+//session_start();
 
 class Master extends Controller {
     function __construct() {
@@ -8,7 +8,7 @@ class Master extends Controller {
         $this->model = $this->loadModel('masterModel');
         $this->view = $this->loadView('masterView', 'master');
         // Set user to current user TO DO
-        $this->model->setSearch("100022");
+        $this->model->setSearch($_SESSION["USER"]);
         $this->model->searchUser();
         $this->model->checkLocations();
         $this->view->renderPanel($this->model->getData());

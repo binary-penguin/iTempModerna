@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 class LoginModel extends Model {
     private $user;

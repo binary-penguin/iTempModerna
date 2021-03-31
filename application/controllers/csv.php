@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 class Csv extends Controller
 {

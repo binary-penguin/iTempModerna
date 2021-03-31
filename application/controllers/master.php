@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 class Master extends Controller {
     function __construct() {

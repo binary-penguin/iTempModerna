@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 class MasterModel extends Model {
     public $e_number;

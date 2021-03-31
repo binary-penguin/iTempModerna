@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 class SignupModel extends Model {
     private $e_number;

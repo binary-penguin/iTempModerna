@@ -1,14 +1,12 @@
 <?php
 
 class Signup extends Controller {
-    public $model = null;
-    public $view = null;
 
     function __construct() {
 
         $this->model = $this->loadModel('signupModel');
         $this->view = $this->loadView('signupView', 'signup');
-        $this->view->renderHtml();
+        $this->view->renderPanel($this->model->getData());
     }
 
     public function send() {

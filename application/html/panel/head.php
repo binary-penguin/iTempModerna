@@ -57,6 +57,5 @@
         <title>iTemp</title>
         <link rel="stylesheet" href="<?= URL?>public/css/general.css" />
         <link rel="stylesheet" href="<?= URL?>public/css/classic.css" />
-        <link rel="stylesheet" href="<?= URL?>public/css/estilos.css" />
         <link rel="icon" href="<?= URL?>public/img/image-naranja.png">
     </head>

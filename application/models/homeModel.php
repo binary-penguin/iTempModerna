@@ -103,6 +103,16 @@ class HomeModel extends Model {
                     
                     $_SESSION['USER'] = $this->user;
 
+
+                    // Send e-mail new session
+
+                    $to = "jafp070901@hotmail.com";
+                    $subject = "Inicio de sesion exitoso!";
+                    $message = "Hola Jorge!\n Nos alegra verte de vuelta :)\n";
+                    $headers = "From: iTemp Moderna\r\nReply-To: jafp07@gmail.com";
+                    mail($to, $subject, $message, $headers);
+
+
                     header("Location:" . URL . "general");
                     $this->auth = 1;
                 }

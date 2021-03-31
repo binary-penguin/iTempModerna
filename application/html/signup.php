@@ -41,9 +41,11 @@
                                 <p class="card-text">Número de empleado</p>
                                 <input type="text" name="e_number" class="campo" onclick="clearMsg();"/>
                                 <p id="msg" class="prompt"></p>
+                                
                                 <p class="card-text">Correo</p>
                                 <input type="email" name="mail" class="campo"/>
                                 <p id="msg2" class="prompt"></p>
+
                                 <p class="card-text">Contraseña</p>
                                 <input type="password" id="pv" name="psw" class="campo" />
                                 <div class="row">

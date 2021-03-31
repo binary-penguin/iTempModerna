@@ -9,9 +9,9 @@ class Signup extends Controller {
         $this->view->renderPanel($this->model->getData());
     }
 
-    public function send() {
+    public function addUser() {
         // If the user is submitted then validate the credentials
-        if (isset($_POST["b_submit"])) {
+        if (isset($_POST["b_add"])) {
 
             //Call to model and then render the Html again
             $this->model->setUser($_POST["e_number"]);
@@ -22,7 +22,8 @@ class Signup extends Controller {
 
             $this->model->validate();
             $this->model->register();
-            $this->view->addData($this->model->getData());
+            $this->view->renderPanel($this->model->getData());
+    
 
             // To echo the next line comment line addData line
             //echo var_dump($this->data);

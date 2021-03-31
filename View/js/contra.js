@@ -13,6 +13,12 @@ function mostrar_c(){
 	}else{
 		x.type="password";
 	}
+	x=document.getElementById("confirm_password");
+	if(x.type == "password"){
+		x.type="text";
+	}else{
+		x.type="password";
+	}
 }
 
 function iniciar_sesion(){

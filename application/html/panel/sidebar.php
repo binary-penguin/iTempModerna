@@ -22,11 +22,12 @@
 
 
                                 <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
-                                <?php foreach ($locationsSESSION as $location): ?>
+                                
+                                <?php foreach ($_SESSION['LOCATIONS'] as $location): ?>
                                     <li class="sidebar-item">
                                         <a class="sidebar-link" href="pirineos1.html">
-                                            <?=$location['name']?>
-                                            <span class="sidebar-badge badge badge-primary"><?=$location['employees']?></span>
+                                            <?=$location?>
+                                            <!--<span class="sidebar-badge badge badge-primary"></span> -->
                                         </a>
                                     </li>
                                 <?php endforeach; ?>
@@ -65,4 +66,3 @@
                     </ul>
                 </div>
             </nav>
-

@@ -79,7 +79,7 @@
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="mostrar_contra" class="campo-psw" onclick="mostrar()"/>
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar()"/>
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="mostrar_contra" class="campo-psw" onclick="mostrar()"/>
+                                                        <input type="checkbox" name="mostrar_contra" onclick="mostrar()"/>
                                                         <p class="card-text mostrar-txt mt-2 d-inline" >Mostrar contraseña</p>
                                                     </div>
                                                 </div>

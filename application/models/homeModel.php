@@ -7,6 +7,7 @@ class HomeModel extends Model {
     private $hash;
     private $auth;
     private $message;
+    private $locations;
     
 
     function __constructor() {
@@ -15,6 +16,7 @@ class HomeModel extends Model {
         $this->auth = "";
         $this->message = "";
         $this->hash = '';
+        $this->locations = [];
     }
 
     public function setUser($user) {
@@ -62,15 +64,43 @@ class HomeModel extends Model {
                 $hashed_psw = crypt($this->password, $db_hash);
 
                 if(hash_equals($db_hash, $hashed_psw)==1){
+                    
                     // Succesfull login!
                     session_start();
 
+                    // NAME
                     $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
                     $query = $this->db->prepare($sql);
                     $query->execute(array(':e_number' => $this->user));
                     $row = $query->fetchAll();
 
                     $_SESSION['NAME'] = $row[0]["nombre_completo"];
+
+                    // LOCATIONS
+                    $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
+                    $query = $this->db->prepare($sql);
+                    //change data to the correct database table names
+                    $query->execute(array(":e_number" => $this->user));
+
+                    $this->locations = [];
+
+                    while($row = $query->fetch()){
+                        // GET LOCATION NAMES
+
+                        $sql2 = "SELECT descripcion FROM lector WHERE clave = :cve_ubicacion";
+                        $query2 = $this->db->prepare($sql2);
+                        //change data to the correct database table names
+                        $query2->execute(array(":cve_ubicacion" => $row['cve_ubicacion']));
+
+                        while($row2 = $query2->fetch()){
+                            $this->locations[] = $row2['descripcion'];
+                        }
+                        
+                        
+                    }
+
+                    $_SESSION['LOCATIONS'] = $this->locations;
+                    
                     $_SESSION['USER'] = $this->user;
 
                     header("Location:" . URL . "general");
@@ -99,7 +129,8 @@ class HomeModel extends Model {
         return [
             "auth" => $this->auth,
             "message" => $this->message,   
-            "hash" => $this->hash
+            "hash" => $this->hash,
+            "locations" => $this->locations
         ];
 
     }

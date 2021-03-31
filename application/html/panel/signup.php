@@ -75,7 +75,13 @@
                                                 <h5 class="bold-h5">Correo</h5>
                                                 <input type="mail" name="mail" class="campo-psw"/>
                                                 <br><br>
-
+                                                <h5 class="bold-h5">Tipo</h5>
+                                                <select name="c_tipo"  class="campo-psw">
+                                                                <option value="regular" selected>Regular</option>
+                                                                <option value="master">Master</option>
+                                                </select>
+                    
+                                                <br><br>
 
                                                 <h5 class="bold-h5">Contraseña</h5>
                                                 <input type="password" name="c_contra" class="campo-psw" id="c_contra" />

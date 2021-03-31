@@ -14,10 +14,12 @@ class Master extends Controller {
 
     public function update() {
         if (isset($_POST["b_cambiar_contra"])) {
+            $this->model->setUser($_POST["t_user"]);
             $this->model->setPassword($_POST["c_contra"]);
             $this->model->changePswAdmin();
         }
         else if (isset($_POST["b_cambiar_ubi"])) {
+            $this->model->setUser($_POST["t_user"]);
             $this->model->setLocations($_POST["planta"]);
             $this->model->changeLocations();
             $this->model->checkLocations();

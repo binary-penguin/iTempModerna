@@ -83,7 +83,7 @@ class MasterModel extends Model {
 
         if($row){
             $this->match = 1;
-            $this->e_number = $row[0]["n_empleado"];
+            $this->setUser($row[0]["n_empleado"]);
 
             $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
             $query = $this->db->prepare($sql);

@@ -93,6 +93,7 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
+                                                <input type="text" value="<?=$user?>" class="d-none" name="t_user"/>
                                                 <input type="submit" name="b_cambiar_contra" class="btn btn-danger" value="Cambiar contraseña" />
                                             </form>
                                         </div>
@@ -198,6 +199,7 @@
                                                 <div class="pt-3">
                                                         <div class="row">
                                                             <div class="col-12 mx-auto">
+                                                                <input type="text" value="<?=$user?>" class="d-none" name="t_user"/>
                                                                 <input type="button" name="b_guardar" class="btn btn-primary m-3" value="Modificar" onclick="habilitarPermisos()"/>
                                                                 <input type="submit" name="b_cambiar_ubi" class="btn btn-danger m-3" value="Guardar" id="b_mod" disabled />
                                                             </div>

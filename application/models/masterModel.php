@@ -82,6 +82,21 @@ class MasterModel extends Model {
         }
         $_SESSION['LOCATIONS-CVE'] = $locations_cve;
         $_SESSION['LOCATIONS-NAME'] = $locations_name;
+
+
+        // CHANGE EMPLOYEES IN EACH LOCATION
+        $employees_n = [];
+        foreach($_SESSION['LOCATIONS-CVE'] as $location) {
+            $sql = "SELECT COUNT(DISTINCT datos) FROM marca WHERE clave = :clave";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(":clave" => $location));
+            while($row = $query->fetch()){
+                $employees_n[] = $row["COUNT(DISTINCT datos)"];
+            }
+        }
+        $_SESSION['EMPLOYEES-N']=$employees_n;
+
+
     }
 
     public function checkLocations() {

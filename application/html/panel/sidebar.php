@@ -16,6 +16,10 @@
                                 <li class="sidebar-item">
                                     <a class="sidebar-link" href="<?= URL?>general">
                                         General
+                                        <?php $totalN_employees = 0; ?>
+                                        <?php foreach ($_SESSION['EMPLOYEES-N'] as $employees_n): ?>
+                                        <?php $totalN_employees+= $employees_n ?>
+                                        <?php endforeach;?>
                                         <span class="sidebar-badge badge badge-info"><?=$totalN_employees?></span>
                                     </a>
                                 </li>
@@ -25,20 +29,19 @@
                                 
                                 <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
                                     <?php $location_index = array_search($location, $_SESSION['LOCATIONS-NAME']); ?>
-                                    <?= "primer foreach".$location_index."<br>" ?>
                                     <li class="sidebar-item">
                                         <a class="sidebar-link" href="pirineos1.html">
                                             <?=utf8_encode($location)?>
                                             <?php foreach ($_SESSION['EMPLOYEES-N'] as $employees_n): ?>
                                                 <?php $employees_index = array_search($employees_n, $_SESSION['EMPLOYEES-N']);?>
-                                                <?= "<br> 2do foreach".$employees_index."<br>"?>
+                                                
                                                 <?php if($location_index == $employees_index):?>
-                                                    <small><span class="sidebar-badge badge badge-primary"><?=$employees_n?></span></small>
+                                                    <span class="sidebar-badge badge badge-primary"><?=$employees_n?></span>
                                                 <?php endif; ?>
-                                        </a>
-                                            <?php endforeach; ?>                
+                                            <?php endforeach; ?>     
+                                        </a>                 
                                     </li>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </ul>
                         </li>
                         <li class="sidebar-item">

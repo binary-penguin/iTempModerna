@@ -12111,8 +12111,8 @@ body {
     height: 1.5rem;
 }
 .sidebar {
-    min-width: 256px;
-    max-width: 256px;
+    min-width: 356px;
+    max-width: 356px;
     border-right: 0;
 }
 .sidebar,
@@ -12132,7 +12132,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 256px;
+    width: 356px;
 }
 .sidebar-nav {
     padding-bottom: 3.5rem;
@@ -12261,17 +12261,17 @@ a.sidebar-link svg {
     height: 26px;
 }
 .sidebar.toggled {
-    margin-left: -256px;
+    margin-left: -356px;
 }
 .sidebar.toggled .sidebar-content {
-    left: -256px;
+    left: -356px;
 }
 @media (min-width: 1px) and (max-width: 991.98px) {
     .sidebar {
-        margin-left: -256px;
+        margin-left: -356px;
     }
     .sidebar .sidebar-content {
-        left: -256px;
+        left: -356px;
     }
     .sidebar.toggled {
         margin-left: 0;

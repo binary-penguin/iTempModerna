@@ -57,7 +57,31 @@ class MasterModel extends Model {
             $query2 = $this->db->prepare($sql2);
             $query2->execute(array(':usuario' => $this->e_number, ':cve_ubicacion' => $location));
             
-        }   
+        } 
+        
+        // GET SESSION LOCATIONS (NAME)
+        $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
+        $query = $this->db->prepare($sql);
+        //change data to the correct database table names
+        $query->execute(array(":e_number" => $this->e_number));
+
+        $locations_name = [];
+        $locations_cve = [];
+
+        while($row = $query->fetch()){
+            $locations_cve[] = $row['cve_ubicacion'];
+
+            $sql2 = "SELECT descripcion FROM lector WHERE clave = :cve_ubicacion";
+            $query2 = $this->db->prepare($sql2);
+            //change data to the correct database table names
+            $query2->execute(array(":cve_ubicacion" => $row['cve_ubicacion']));
+
+            while($row2 = $query2->fetch()){
+                $locations_name[] = $row2['descripcion'];
+            }
+        }
+        $_SESSION['LOCATIONS-CVE'] = $locations_cve;
+        $_SESSION['LOCATIONS-NAME'] = $locations_name;
     }
 
     public function checkLocations() {
@@ -95,8 +119,6 @@ class MasterModel extends Model {
             if(isset($row)){
                 $this->db_name = $row[0]["nombre_completo"];
             }
-
-
         }
         else{
             $this->match = 0;

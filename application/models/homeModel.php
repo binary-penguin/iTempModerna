@@ -8,6 +8,7 @@ class HomeModel extends Model {
     private $auth;
     private $message;
     private $locations;
+    private $employees_n;
     
 
     function __constructor() {
@@ -17,6 +18,7 @@ class HomeModel extends Model {
         $this->message = "";
         $this->hash = '';
         $this->locations = [];
+        $this->employees_n = [];
     }
 
     public function setUser($user) {
@@ -109,7 +111,7 @@ class HomeModel extends Model {
         $query->execute(array(":e_number" => $this->user));
 
         $this->locations_name = [];
-        $this->location_cve = [];
+        $this->locations_cve = [];
 
         while($row = $query->fetch()){
             $this->locations_cve[] = $row['cve_ubicacion'];
@@ -122,8 +124,6 @@ class HomeModel extends Model {
             while($row2 = $query2->fetch()){
                 $this->locations_name[] = $row2['descripcion'];
             }
-            
-            
         }
 
         $_SESSION['LOCATIONS-CVE'] = $this->locations_cve;
@@ -167,6 +167,20 @@ class HomeModel extends Model {
         }
 
         $_SESSION['TYPE'] = $type;
+
+        //GET EMPLOYEES IN EACH LOCATION
+        //$employees_n = [];
+        foreach($_SESSION['LOCATIONS-CVE'] as $location) {
+            $sql = "SELECT COUNT(DISTINCT datos) FROM marca WHERE clave = :clave";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(":clave" => $location));
+            while($row = $query->fetch()){
+                $this->employees_n[] = $row["COUNT(DISTINCT datos)"];
+            }
+        }
+        $_SESSION['EMPLOYEES-N']=$this->employees_n;
+
+
 
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",
@@ -227,7 +241,8 @@ class HomeModel extends Model {
             "auth" => $this->auth,
             "message" => $this->message,   
             "hash" => $this->hash,
-            "locations" => $this->locations
+            "locations" => $this->locations,
+            "employees_n" => $this->employees_n
         ];
 
     }

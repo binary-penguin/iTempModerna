@@ -24,11 +24,19 @@
                                 <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
                                 
                                 <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
+                                    <?php $location_index = array_search($location, $_SESSION['LOCATIONS-NAME']); ?>
+                                    <?= "primer foreach".$location_index."<br>" ?>
                                     <li class="sidebar-item">
                                         <a class="sidebar-link" href="pirineos1.html">
-                                            <?=$location?>
-                                            <!--<span class="sidebar-badge badge badge-primary"></span> -->
+                                            <?=utf8_encode($location)?>
+                                            <?php foreach ($_SESSION['EMPLOYEES-N'] as $employees_n): ?>
+                                                <?php $employees_index = array_search($employees_n, $_SESSION['EMPLOYEES-N']);?>
+                                                <?= "<br> 2do foreach".$employees_index."<br>"?>
+                                                <?php if($location_index == $employees_index):?>
+                                                    <small><span class="sidebar-badge badge badge-primary"><?=$employees_n?></span></small>
+                                                <?php endif; ?>
                                         </a>
+                                            <?php endforeach; ?>                
                                     </li>
                                 <?php endforeach; ?>
                             </ul>

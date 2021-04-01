@@ -7,6 +7,7 @@ class General extends Controller {
         $this->model = $this->loadModel('generalModel');
         //$data = $this->model->getData();
         $this->view = $this->loadView('generalView', 'general');
+        //echo var_dump ($_SESSION['EMPLOYEES-N']);
         $this->view->renderPanel(array('hola' => 5));
         
     }

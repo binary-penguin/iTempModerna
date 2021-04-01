@@ -187,9 +187,14 @@ class HomeModel extends Model {
         ';
 
         $message2 = '
-        <h1>Wuju!</h1>
-        <h3>Nos alegra verte de vuelta ' . $_SESSION['NAME'] . '</h3>
-        <small>*Si no reconoces este inicio de sesión te recomendamos cambiar tu contraseña</small>';
+        <img src="https://drive.google.com/uc?export=view&id=1qx-TetEQFmLRsl-qvWo20Tk9C8M0jdjh"></img>
+        <br>
+        <h1 style="color:#F09F08;">Wuju!</h1>
+        <h2 style="display:inline-block;">Nos alegra verte de vuelta, </h2>
+        <h2 style="display:inline-block; color:#F09F08;">' . $_SESSION['NAME'] . '</h2>
+        <br><br>
+        <hr>
+        <h4>*Si no reconoces este inicio de sesion te recomendamos cambiar tu contrasena. </h4>';
 
         $message = utf8_encode($message);
         $message2 = utf8_encode($message2);

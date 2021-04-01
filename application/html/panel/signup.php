@@ -41,7 +41,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="<?=URL?>account"><i class="align-middle mr-1" data-feather="user"></i>Cuenta</a>
-                                    <a class="dropdown-item" href="<?=URL?>home/logout">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="<?=URL?>home/logout"><i class="align-middle mr-1" data-feather="log-out"></i>Cerrar sesión</a>
                                 </div>
                             </li>
                         </ul>

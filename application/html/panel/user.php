@@ -46,6 +46,35 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12 col-lg-3 col-xl-3">
+                                                <i class="feather-lg text-primary" data-feather="mail"></i>
+                                                <h3>Nuevo correo electrónico</h3>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <h3><?=$_SESSION['NAME']?></h3>
+                                        <h5 class="card-title bold-h5">Número de empleado: <?=$_SESSION['USER']?></h5>
+                                        <br>
+                                        <form action="<?php echo URL?>user/update" method="POST">
+                                            <h5 class="bold-h5">Nuevo correo</h5>
+                                            <input type="mail" id="mail" name="mail" class="campo-psw" required>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <h5 class="bold-h5">Vuelva a introducir el correo</h5>
+                                            <input type="mail" id="confirm_mail" name="confirm_mail" class="campo-psw" title="Los correos no coinciden" required>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <input type="submit" name="b_cambiar_mail" class="btn btn-danger" value="Cambiar correo electrónico" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl d-flex text-center">
+                                <div class="card flex-fill">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-3 col-xl-3">
                                                 <i class="feather-lg text-primary" data-feather="key"></i>
                                                 <h3>Nueva Contraseña</h3>
                                                 <br>
@@ -56,7 +85,7 @@
                                         <br>
                                         <form action="<?php echo URL?>user/update" method="POST">
                                             <h5 class="bold-h5">Nueva contraseña</h5>
-                                            <input type="password" id="psw" name="psw" class="campo-psw-user" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
+                                            <input type="password" id="psw" name="psw" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
                                             <br>
                                             <div class="row">
                                                 <div class="col-12">
@@ -66,7 +95,7 @@
                                             </div>
                                             <br>
                                             <h5 class="bold-h5">Vuelva a introducir la contraseña</h5>
-                                            <input type="password" id="confirm_password" name="confirm_password" class="campo-psw-user" title="" required>
+                                            <input type="password" id="confirm_password" name="confirm_password" class="campo-psw" title="" required>
                                             <br>
                                             <div class="row">
                                                 <div class="col-12">
@@ -91,21 +120,56 @@
                 </div>
             </main>
         </div>
+
+    
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="bt-modal">Launch Modal</button>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="staticBackdropLabel">&iexcl;Lo sentimos!</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="txt-modal" class="txt-modal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Entendido</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     
     <script>
         var password = document.getElementById("psw"),
             confirm_password = document.getElementById("confirm_password");
 
+        var mail = document.getElementById("mail");
+            confirm_mail = document.getElementById("confirm_mail");
+
         function validatePassword() {
             if (password.value != confirm_password.value) {
-                confirm_password.setCustomValidity("Favor de revisar contraseña");
+                confirm_password.setCustomValidity("Contraseñas no coinciden");
             } else {
                 confirm_password.setCustomValidity('');
             }
         }
 
+        function validateMail() {
+            if (mail.value != confirm_mail.value) {
+                confirm_mail.setCustomValidity("Correos no coinciden");
+            }
+            else{
+                confirm_mail.setCustomValidity('');
+            }
+        }
+
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
+        mail.onchange = validateMail;
+        confirm_mail.onkeyup = validateMail;
         var myInput = document.getElementById("psw");
         var letter = document.getElementById("letter");
         var capital = document.getElementById("capital");
@@ -157,3 +221,8 @@
 </body>
 
 </html>
+
+<?php if ((isset($permission)) && ($permission == 1)): ?>
+<script> document.getElementById("txt-modal").innerText = "<?= $message; ?>" </script>
+<script>document.getElementById("bt-modal").click();</script>
+<?php endif ?>

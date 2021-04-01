@@ -18,5 +18,12 @@ class User extends Controller {
             $this->model->changePswUser();
             $this->view->renderPanel($this->model->getData());
         }
+
+        if (isset($_POST["b_cambiar_mail"])) {
+            $this->model->setUser($_SESSION['USER']);
+            $this->model->setMail($_POST["mail"]);
+            $this->model->changeMail();
+            $this->view->renderPanel($this->model->getData());
+        }
     }
 }

@@ -56,7 +56,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>iTemp</title>
+        <link rel="stylesheet" href="<?= URL?>public/css/image-picker.css">
         <link rel="stylesheet" href="<?= URL?>public/css/general.css" />
         <link rel="stylesheet" href="<?= URL?>public/css/classic.css" />
         <link rel="icon" href="<?= URL?>public/img/image-naranja.png">
+        
     </head>

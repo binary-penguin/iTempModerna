@@ -99,6 +99,8 @@ class HomeModel extends Model {
         $row = $query->fetchAll();
 
         $_SESSION['NAME'] = $row[0]["nombre_completo"];
+        $_SESSION['NAME'] = strtolower($_SESSION['NAME']);
+        $_SESSION['NAME'] = ucwords($_SESSION['NAME']);
 
         // GET SESSION LOCATIONS (NAME)
         $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
@@ -123,8 +125,33 @@ class HomeModel extends Model {
             
             
         }
+
         $_SESSION['LOCATIONS-CVE'] = $this->locations_cve;
         $_SESSION['LOCATIONS-NAME'] = $this->locations_name;
+
+        // GET PROFILE PICTURE
+
+        $sql = "SELECT imagen FROM usuario WHERE n_empleado = :e_number";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(":e_number" => $this->user));
+
+        while($row = $query->fetch()) {
+            $pp = $row['imagen'];
+        }
+
+        $_SESSION['PP'] = $pp;
+
+        // GET MAIL
+
+        $sql = "SELECT correo FROM usuario WHERE n_empleado = :e_number";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(":e_number" => $this->user));
+
+        while($row = $query->fetch()) {
+            $mail = $row['correo'];
+        }
+
+        $_SESSION['MAIL'] = $mail;
 
         
         // GET SESSION USER NUMBER
@@ -144,11 +171,6 @@ class HomeModel extends Model {
 
         // Message
         $message = '
-        <html>
-        <head>
-        <title>Birthday Reminders for August</title>
-        </head>
-        <body>
         <table>
         <p>Here are the birthdays upcoming in Auguestación!</p>
             <tr>
@@ -162,10 +184,15 @@ class HomeModel extends Model {
             </tr>
         </table>
         </body>
-        </html>
         ';
 
+        $message2 = '
+        <h1>Wuju!</h1>
+        <h3>Nos alegra verte de vuelta ' . $_SESSION['NAME'] . '</h3>
+        <small>*Si no reconoces este inicio de sesión te recomendamos cambiar tu contraseña</small>';
+
         $message = utf8_encode($message);
+        $message2 = utf8_encode($message2);
 
         // To send HTML mail, the Content-type header must be set
         $headers[] = 'MIME-Version: 1.0';
@@ -176,7 +203,8 @@ class HomeModel extends Model {
         $headers[] = 'From: iTemp Moderna <noreply@moderna.com>';
 
         // Mail it
-        mail($to, $subject, $message, implode("\r\n", $headers));
+        //ñmail($to, $subject, $message, implode("\r\n", $headers));
+        mail($to, $subject, $message2, implode("\r\n", $headers));
 
     }
 

@@ -9,6 +9,7 @@ class SignupModel extends Model {
     private $psw;
     private $permission;
     private $type;
+    private $image;
     private $locations;
     private $message;
     private $db_mail;
@@ -28,6 +29,7 @@ class SignupModel extends Model {
         $this->db_user = "" ;
         $this->db_userName = "";
         $this->match = null;
+        $this->image = "https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX";
     }
 
     public function validate() {
@@ -85,12 +87,13 @@ class SignupModel extends Model {
         if (($this->permission) !== 0 && ($this->permission) !== 1){
             $this->permission = 3;
             $this->hash = $this->hashing();
-                $sql = "INSERT INTO usuario (n_empleado, correo, contrasena, tipo) VALUES(:n_empleado, :correo, :contrasena, :tipo)"; 
+                $sql = "INSERT INTO usuario (n_empleado, correo, contrasena, tipo, imagen) VALUES(:n_empleado, :correo, :contrasena, :tipo, :imagen)"; 
                 //echo $sql . "<br>" . $this->user . $this->password;
     
                 $query = $this->db->prepare($sql);
         
-                $query->execute(array(':n_empleado' => $this->e_number, ':correo' => $this->mail, ':contrasena' => $this->hash, ':tipo' => $this->type));
+                $query->execute(array(':n_empleado' => $this->e_number, ':correo' => $this->mail, ':contrasena' => $this->hash, ':tipo' => $this->type, 
+                ':imagen' => "https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX"));
                 
                 foreach ($this->locations as $location) {
                     $sql2 = "INSERT INTO ubicacion (usuario, cve_ubicacion) VALUES(:usuario,:cve_ubicacion)"; 

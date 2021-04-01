@@ -10,7 +10,7 @@
                         <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                             <i class="align-middle" data-feather="settings"></i>
                         </a>
-
+                        <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
                         <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                         <span class="text-dark"><?=$_SESSION['NAME']?></span>
                         </a>
@@ -32,10 +32,14 @@
                         <div class="col-12 col-xl d-flex text-center">
                             <div class="card flex-fill">
                                 <div class="card-body">
+                                    <img class="rounded-circle z-depth-2 img-thumbnail pp" src="<?=$_SESSION['PP']?>" onclick="launchModal();">
+                                    <br><br>
                                     <h3><?=$_SESSION['NAME']?></h3>
+                                    <br>
                                     <h5 class="card-title bold-h5">Número de empleado: <?=$_SESSION['USER']?></h5>
+                                    <h5 class="card-title bold-h5">Correo: <?=$_SESSION['MAIL']?></h5>
                                     <input type="button" name="admin" class="btn btn-primary m-3" value="Administrar cuentas" onclick="document.location.href='master'"/>
-                                    <input type="button" name="password" class="btn btn-primary m-3" value="Cambiar contraseña" onclick="document.location.href='user'"/>
+                                    <input type="button" name="password" class="btn btn-danger m-3" value="Cambiar contraseña" onclick="document.location.href='user'"/>
                                     <input type="button" name="signup" class="btn btn-primary m-3" value="Agregar usuario" onclick="document.location.href='signup'"/>
                                 </div>
                             </div>
@@ -45,8 +49,69 @@
                 </div>
             </div>
         </main>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="bt-modal">Launch Modal</button>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="staticBackdropLabel">&iexcl;Escoge tu foto de perfil&excl;</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form action="<?=URL?>account/picture" method="POST">
+                        <div class="container-fluid align-items-center">
+                            <select class="image-picker" name="img-selected">
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX" selected>
+                                        https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1LbEfVq-RdRKNHD4NjUNHFPpythGJSorf">
+                                        https://drive.google.com/uc?export=view&id=1LbEfVq-RdRKNHD4NjUNHFPpythGJSorf</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1w6l0-RfOn5KzskAEGEezObidu12CFdSS">
+                                        https://drive.google.com/uc?export=view&id=1w6l0-RfOn5KzskAEGEezObidu12CFdSS</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1PQkfch_L9pzgh5Sy7sK0yo1IwVn5pJg4">
+                                        https://drive.google.com/uc?export=view&id=1PQkfch_L9pzgh5Sy7sK0yo1IwVn5pJg4</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1pwCp_WoieUwVDd3pW7BA5YIvVF2SfJYx">
+                                        https://drive.google.com/uc?export=view&id=1pwCp_WoieUwVDd3pW7BA5YIvVF2SfJYx</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1sHz3ti1JMuK77ARDS6oUp5-K3L4FMatD">
+                                        https://drive.google.com/uc?export=view&id=1sHz3ti1JMuK77ARDS6oUp5-K3L4FMatD</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=17AN545jqldzvLFSbGvNxKRN6-g4d49-L">
+                                        https://drive.google.com/uc?export=view&id=17AN545jqldzvLFSbGvNxKRN6-g4d49-L</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1eIuh1TKbljULUwIwVL_KhuQZJJMoF7vG">
+                                        https://drive.google.com/uc?export=view&id=1eIuh1TKbljULUwIwVL_KhuQZJJMoF7vG</option>
+                                    <option data-img-src="https://drive.google.com/uc?export=view&id=14nepZgEy5nbs7Wfhxq9hQ0Fy5_a8WL31">
+                                        https://drive.google.com/uc?export=view&id=14nepZgEy5nbs7Wfhxq9hQ0Fy5_a8WL31</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <button type="submit" name="b-image" class="btn btn-warning" >Guardar</button>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        
     </div>
+    </div>
+    
+    <script src="<?=URL?>public/js/app.js"></script>
+    <script src="<?= URL?>public/js/contra.js"></script> 
+    
+    
+    <script src='<?=URL?>public/js/jquery-3.6.0.js'></script>
+       <script src='<?=URL?>public/js/image-picker.js'></script>
+       <script>
+        $(function() {
+            // initial configuration of the plugin
+            $("select").imagepicker();
+            // re-sync the plugin
+            $("select").data('picker').sync_picker_with_select();
+        });
+        </script>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>
 
-        <script src="<?=URL?>public/js/app.js"></script>
+   
     </body>
 </html>

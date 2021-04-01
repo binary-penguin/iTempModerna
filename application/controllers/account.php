@@ -13,4 +13,15 @@ class Account extends Controller {
 
     }
 
+    public function picture(){
+
+        if (isset($_POST['b-image'])) {
+
+            $this->model->changePicture($_POST['img-selected']);
+            $this->view->renderPanel($this->model->getData());
+
+        }
+
+    }
+
 }

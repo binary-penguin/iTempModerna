@@ -111,3 +111,12 @@ p, a {
     font-size:small;
     color:#F00;
 }
+
+.img-thumbnail {
+    background-color: #b8b1b180 !important;
+}
+
+.pp:hover {
+    opacity: 0.5;
+
+}

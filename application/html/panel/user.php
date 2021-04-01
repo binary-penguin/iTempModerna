@@ -37,7 +37,7 @@
             <main class="content">
                 <div class="container-fluid">
                     <div>
-                        <h1>Cambio de contraseña</h1>
+                        <h1>Modificar datos</h1>
                     </div>
                     <div class="container-fluid p-0">
                         <div class="row">

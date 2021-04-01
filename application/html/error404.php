@@ -23,9 +23,13 @@
 			</div>
 			<h2>Página no existente</h2>
 			<p>Tomaste la sopa equivocada...</p>
-			<a href="<?=URL?>">Regresar A Inicio</a>
+            <?php if(isset($_SESSION["USER"])):?>
+			    <a href="<?=URL?>general">Regresar A General</a>
+            <?php endif;?>
+            <?php if(!isset($_SESSION["USER"])):?>
+                <a href="<?=URL?>">Regresar A Inicio</a>
+            <?php endif;?>
 		</div>
-
 	</div>
 
 </body>

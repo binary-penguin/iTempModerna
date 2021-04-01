@@ -38,9 +38,13 @@
                                     <br>
                                     <h5 class="card-title bold-h5">Número de empleado: <?=$_SESSION['USER']?></h5>
                                     <h5 class="card-title bold-h5">Correo: <?=$_SESSION['MAIL']?></h5>
-                                    <input type="button" name="admin" class="btn btn-primary m-3" value="Administrar cuentas" onclick="document.location.href='master'"/>
-                                    <input type="button" name="password" class="btn btn-danger m-3" value="Cambiar contraseña" onclick="document.location.href='user'"/>
-                                    <input type="button" name="signup" class="btn btn-primary m-3" value="Agregar usuario" onclick="document.location.href='signup'"/>
+                                    <?php if($_SESSION['TYPE']==="master"):?>
+                                        <input type="button" name="admin" class="btn btn-primary m-3" value="Administrar cuentas" onclick="document.location.href='master'"/>
+                                    <?php endif;?>
+                                    <input type="button" name="password" class="btn btn-danger m-3" value="Modificar datos personales" onclick="document.location.href='user'"/>
+                                    <?php if($_SESSION['TYPE']==="master"):?>
+                                        <input type="button" name="signup" class="btn btn-primary m-3" value="Agregar usuario" onclick="document.location.href='signup'"/>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>

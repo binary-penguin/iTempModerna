@@ -11,7 +11,12 @@ class Master extends Controller {
         $this->model->setSearch($_SESSION["USER"]);
         $this->model->searchUser();
         $this->model->checkLocations();
-        $this->view->renderPanel($this->model->getData());
+        if($_SESSION["TYPE"]==='master') {
+            $this->view->renderPanel($this->model->getData());
+        }
+        else{
+            header("Location:".URL."error404");
+        }
     }
 
     public function update() {

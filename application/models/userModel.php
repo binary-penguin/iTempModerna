@@ -63,6 +63,7 @@ class UserModel extends Model {
             $sql = "UPDATE usuario SET correo = :correo WHERE n_empleado = :n_empleado";
             $query = $this->db->prepare($sql);
             $query->execute(array(':correo' => $this->mail, ':n_empleado' => $this->e_number ));
+            $_SESSION['MAIL'] = $this->mail;
         }        
     }
 

@@ -8,7 +8,12 @@ class Signup extends Controller {
 
         $this->model = $this->loadModel('signupModel');
         $this->view = $this->loadView('signupView', 'signup');
-        $this->view->renderPanel($this->model->getData());
+        if($_SESSION["TYPE"]==='master') {
+            $this->view->renderPanel($this->model->getData());
+        }
+        else{
+            header("Location:".URL."error404");
+        }
     }
 
     public function addUser() {

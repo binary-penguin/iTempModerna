@@ -157,7 +157,16 @@ class HomeModel extends Model {
         // GET SESSION USER NUMBER
         $_SESSION['USER'] = $this->user;
 
-        
+        //GET ACCOUNT TYPE
+        $sql = "SELECT tipo FROM usuario WHERE n_empleado = :e_number";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(":e_number" => $this->user));
+
+        while($row = $query->fetch()) {
+            $type = $row['tipo'];
+        }
+
+        $_SESSION['TYPE'] = $type;
 
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",

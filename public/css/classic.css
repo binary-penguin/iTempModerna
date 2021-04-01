@@ -2478,8 +2478,8 @@ fieldset:disabled a.btn {
 .fc-unthemed .show > .dropdown-toggle.fc-button,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #36999f;
-    border-color: #329096;
+    background-color: #DE9307;
+    border-color: #DE9307;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -3280,6 +3280,7 @@ input[type="submit"].btn-block {
     clear: both;
     font-weight: 400;
     color: #495057;
+    background-color: #DE9307;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;

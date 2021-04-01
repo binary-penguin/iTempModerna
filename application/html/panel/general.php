@@ -36,7 +36,7 @@
                                                 <i class="feather-lg text-warning" data-feather="users"></i>
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$totalN_entries?></h3>
+                                                <h3 class="mb-2"><?=$_SESSION["CURRENTDATE-ENTRIES"]?></h3>
                                                 <div class="mb-0">Ingresos</div>
                                             </div>
                                         </div>

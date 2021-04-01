@@ -9,6 +9,7 @@ class HomeModel extends Model {
     private $message;
     private $locations;
     private $employees_n;
+    private $entries;
     
 
     function __constructor() {
@@ -17,6 +18,7 @@ class HomeModel extends Model {
         $this->auth = "";
         $this->message = "";
         $this->hash = '';
+        $this->entries = [];
         $this->locations = [];
         $this->employees_n = [];
     }
@@ -180,8 +182,21 @@ class HomeModel extends Model {
         }
         $_SESSION['EMPLOYEES-N']=$this->employees_n;
 
-
-
+        //GET CURRENT ACCESS
+        //$hora = date("Y-m-d");       
+        $hora = "2021-02-01";
+        foreach($_SESSION['LOCATIONS-CVE'] as $location) {
+            $sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
+            //$sql = "SELECT DISTINCT datos, hora FROM (SELECT DISTINCT hora, datos FROM marca WHERE clave = ':clave') T";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(":clave" => $location));
+            while($row = $query->fetch()){
+                if($hora == strtok($row["hora"]," ")){
+                    $this->entries[] = strtok($row["hora"]," ");
+                }
+            }
+        }
+        $_SESSION['CURRENTDATE-ENTRIES']=count($this->entries);
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",
                         "Inicio de sesion exitoso!");

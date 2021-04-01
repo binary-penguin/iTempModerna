@@ -246,7 +246,7 @@
 
         
         <script>
-            var myInput = document.getElementById("c_contra");
+            var myInput = document.getElementById("psw");
             var letter = document.getElementById("letter");
             var capital = document.getElementById("capital");
             var number = document.getElementById("number");

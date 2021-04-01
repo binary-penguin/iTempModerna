@@ -34,15 +34,13 @@
                                 <div class="card-body">
                                     <h3><?=$_SESSION['NAME']?></h3>
                                     <h5 class="card-title bold-h5">Número de empleado: <?=$_SESSION['USER']?></h5>
-                                
+                                    <input type="button" name="admin" class="btn btn-primary m-3" value="Administrar cuentas" onclick="document.location.href='master'"/>
+                                    <input type="button" name="password" class="btn btn-primary m-3" value="Cambiar contraseña" onclick="document.location.href='user'"/>
+                                    <input type="button" name="signup" class="btn btn-primary m-3" value="Agregar usuario" onclick="document.location.href='signup'"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-12 pt-5">
-                            <a href="master">Administrar cuentas >></a><br />
-                            <a href="user">Cambiar contraseña >></a><br>
-                            <a href="signup">Dar de alta cuentas >></a>
-                        </div>
+                
                     </div>
                 </div>
             </div>

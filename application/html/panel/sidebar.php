@@ -23,7 +23,7 @@
 
                                 <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
                                 
-                                <?php foreach ($_SESSION['LOCATIONS'] as $location): ?>
+                                <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
                                     <li class="sidebar-item">
                                         <a class="sidebar-link" href="pirineos1.html">
                                             <?=$location?>

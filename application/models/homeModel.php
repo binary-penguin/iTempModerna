@@ -220,25 +220,7 @@ class HomeModel extends Model {
                     $temp2[] = preg_split( "/[ =]/", $t["complemento"] );
                 }
             }
-
-            for ($i=0; $i < count($temp2); $i++){ 
-                $this->tempsSum += (double)$temp2[$i][7];
-
-                // GET TODAY LOW, NORMAL AND HIGH TEMPS
-
-                if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
-                    $_SESSION['CURRENTDATE-NORMAL']++;
-                }
-                else if ((double)$temp2[$i][7] < 36){
-                    $_SESSION['CURRENTDATE-LOW']++;
-                }
-                else {
-                    $_SESSION['CURRENTDATE-HIGH']++;
-                }
-            }
-            $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
-            $this->tempsSum = number_format($this->tempsSum, 2);
-            
+  
             //FOR OPTIMIZING
             //if($hora == strtok(w$row["hora"]," ")){
               //  $temp[] = preg_split( "/[ =]/", $row["complemento"] );   
@@ -250,6 +232,24 @@ class HomeModel extends Model {
                 }*/
             //}
         }
+        for ($i=0; $i < count($temp2); $i++){ 
+            $this->tempsSum += (double)$temp2[$i][7];
+
+            // GET TODAY LOW, NORMAL AND HIGH TEMPS
+
+            if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
+                $_SESSION['CURRENTDATE-NORMAL']++;
+            }
+            else if ((double)$temp2[$i][7] < 36){
+                $_SESSION['CURRENTDATE-LOW']++;
+            }
+            else {
+                $_SESSION['CURRENTDATE-HIGH']++;
+            }
+        }
+        $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
+        $this->tempsSum = number_format($this->tempsSum, 2);
+
         $_SESSION['AVERAGE-TEMPS']=$this->tempsSum;
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",

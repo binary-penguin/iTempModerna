@@ -48,7 +48,16 @@
                                     <div class="card-body py-4">
                                         <div class="media">
                                             <div class="d-inline-block mt-2 mr-3">
-                                                <i class="feather-lg text-success" data-feather="thermometer"></i>
+                                                <?php if(($_SESSION["AVERAGE-TEMPS"] >= 36) && ($_SESSION["AVERAGE-TEMPS"] <= 37)): ?>
+                                                    <i class="feather-lg text-success" data-feather="thermometer"></i>
+                                                <?php endif;?>
+                                                <?php if($_SESSION["AVERAGE-TEMPS"] < 36): ?>
+                                                    <i class="feather-lg text-primary" data-feather="thermometer"></i>
+                                                <?php endif;?>
+                                                <?php if($_SESSION["AVERAGE-TEMPS"] > 37): ?>
+                                                    <i class="feather-lg text-danger" data-feather="thermometer"></i>
+                                                <?php endif;?>
+                                                
                                             </div>
                                             <div class="media-body">
                                                 <h3 class="mb-2"><?=$_SESSION["AVERAGE-TEMPS"]?>°C</h3>

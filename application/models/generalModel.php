@@ -24,6 +24,10 @@ class generalModel extends Model {
         $hora = "2021-02-19";
         $temp = [];
         $temp2 = [];
+        $_SESSION['CURRENTDATE-LOW'] = 0;
+        $_SESSION['CURRENTDATE-NORMAL'] = 0;
+        $_SESSION['CURRENTDATE-HIGH'] = 0;
+        
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
             //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
             $sql = "SELECT datos, hora, consecutivo, clave, complemento FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
@@ -37,6 +41,16 @@ class generalModel extends Model {
             }
             for ($i=0; $i < count($temp2); $i++){ 
                 $this->tempsSum += (double)$temp2[$i][7];
+
+                if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
+                    $_SESSION['CURRENTDATE-NORMAL']++;
+                }
+                else if ((double)$temp2[$i][7] < 36){
+                    $_SESSION['CURRENTDATE-LOW']++;
+                }
+                else {
+                    $_SESSION['CURRENTDATE-HIGH']++;
+                }
             }
             $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
             $this->tempsSum = number_format($this->tempsSum, 2);
@@ -52,6 +66,6 @@ class generalModel extends Model {
                 }*/
             //}
         }
-        $_SESSION['AVERAGE-TEMPS']=($this->tempsSum); 
+        $_SESSION['AVERAGE-TEMPS']=$this->tempsSum;
     }
 }

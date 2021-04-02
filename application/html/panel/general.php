@@ -81,10 +81,16 @@
                                         <h5 class="card-title mb-0">Distribuci&oacute;n de temperaturas</h5>
                                     </div>
                                     <div class="card-body">
+                                        <br>
                                         <div class="media">
                                             <canvas id="chartjs-dashboard-pie"></canvas>
+                                            <br>
                                         </div>
-                                        <table class="table mb-0">
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                        <table class="table mb-0 mt-2">
                                             <thead>
                                                 <tr>
                                                     <th>Estado</th>
@@ -93,23 +99,23 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><i class="fas fa-square-full text-primary"></i> Bajos</td>
-                                                    <td class="text-right">3</td>
+                                                    <td><i class="fas fa-square-full text-primary"></i> Bajos (< 36°C)</td>
+                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-LOW']?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><i class="fas fa-square-full text-success"></i> Normales</td>
-                                                    <td class="text-right">70</td>
+                                                    <td><i class="fas fa-square-full text-success"></i> Normales (36°C - 37°C)</td>
+                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-NORMAL']?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><i class="fas fa-square-full text-danger"></i> Altos</td>
-                                                    <td class="text-right">17</td>
+                                                    <td><i class="fas fa-square-full text-danger"></i> Altos (> 37°C)</td>
+                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-HIGH']?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <div>
                             <input type="button" name="b_generar_pdf" class="btn btn-outline-secondary" value="Generar PDF" onclick="window.print();return false;" />
                         </div>
@@ -130,20 +136,11 @@
             }
             return color;
             }
-
-            Plotly.newPlot('chart-scatter', [{
-                y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
-                x:['lunes','martes','miercoles','jueves','viernes','sabado','domingo'],
-                type: 'line',
-                mode: 'markers',
-                
-            }], {displayModeBar: false});
-
             var trace1 = {
             type: 'line',
             mode: 'markers',
             y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
-            x:['lunes','martes','miercoles','jueves','viernes','sabado','domingo'],
+            x:['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
             marker: {
                 line: {
                     width: 5.5,
@@ -154,9 +151,11 @@
 
             var data = [ trace1 ];
 
+            var layout = { autosize: true}; // set autosize to rescale
+
             var config = {responsive: true}
 
-            Plotly.newPlot('chart-scatter', data, config );
+            Plotly.newPlot('chart-scatter', data, layout, config );
 
 
         </script>
@@ -169,9 +168,17 @@
                         labels: ["Altos", "Normales", "Bajos"],
                         datasets: [
                             {
-                                data: [17, 70, 3],
+                                data: [<?=$_SESSION['CURRENTDATE-HIGH']?>, <?=$_SESSION['CURRENTDATE-NORMAL']?>, <?=$_SESSION['CURRENTDATE-LOW']?>],
                                 backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary, "#E8EAED"],
-                                borderColor: "transparent",
+                                borderColor:
+                                <?php if (((($_SESSION['CURRENTDATE-HIGH'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-NORMAL'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-LOW'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100)) {
+                                echo "'" ."#FFFFFF". "'"; 
+                                }
+                                else { 
+                                    echo "'" ."transparent"."'"; 
+                                }
+                                
+                                ?>,
                             },
                         ],
                     },

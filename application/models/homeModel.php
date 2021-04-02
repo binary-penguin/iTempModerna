@@ -186,7 +186,7 @@ class HomeModel extends Model {
 
         //GET CURRENT ACCESS
         //$hora = date("Y-m-d");       
-        $hora = "2021-02-20";
+        $hora = "2021-02-19";
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
             //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
             $sql = "SELECT datos, hora, consecutivo, clave FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
@@ -198,14 +198,19 @@ class HomeModel extends Model {
                 }
             }
         }
+        
         $_SESSION['CURRENTDATE-ENTRIES']=count($this->entries);
 
         //GET CURRENT AVERAGE TEMP     
-        $hora = "2021-02-20";
+        $hora = "2021-02-19";
         $temp = [];
         $temp2 = [];
+
+        $_SESSION['CURRENTDATE-LOW'] = 0;
+        $_SESSION['CURRENTDATE-NORMAL'] = 0;
+        $_SESSION['CURRENTDATE-HIGH'] = 0;
+
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
-            //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
             $sql = "SELECT datos, hora, consecutivo, clave, complemento FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
             $query = $this->db->prepare($sql);
             $query->execute(array(":clave" => $location));
@@ -215,8 +220,21 @@ class HomeModel extends Model {
                     $temp2[] = preg_split( "/[ =]/", $t["complemento"] );
                 }
             }
+
             for ($i=0; $i < count($temp2); $i++){ 
                 $this->tempsSum += (double)$temp2[$i][7];
+
+                // GET TODAY LOW, NORMAL AND HIGH TEMPS
+
+                if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
+                    $_SESSION['CURRENTDATE-NORMAL']++;
+                }
+                else if ((double)$temp2[$i][7] < 36){
+                    $_SESSION['CURRENTDATE-LOW']++;
+                }
+                else {
+                    $_SESSION['CURRENTDATE-HIGH']++;
+                }
             }
             $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
             $this->tempsSum = number_format($this->tempsSum, 2);
@@ -232,7 +250,7 @@ class HomeModel extends Model {
                 }*/
             //}
         }
-        $_SESSION['AVERAGE-TEMPS']=($this->tempsSum);
+        $_SESSION['AVERAGE-TEMPS']=$this->tempsSum;
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",
                         "Inicio de sesion exitoso!");

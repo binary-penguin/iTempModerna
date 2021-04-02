@@ -39,6 +39,7 @@ class generalModel extends Model {
                 $this->tempsSum += (double)$temp2[$i][7];
             }
             $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
+            $this->tempsSum = number_format($this->tempsSum, 2);
             
             //FOR OPTIMIZING
             //if($hora == strtok(w$row["hora"]," ")){

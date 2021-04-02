@@ -60,23 +60,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 d-flex">
+                            <div class="col-12 col-md-12 col-lg-6 d-flex">
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
                                         <span class="badge badge-primary float-right">Semanal</span>
                                         <h5 class="card-title mb-0">Temperatura promedio</h5>
                                     </div>
                                     <div class="card-body">
-                                        <div class="chart chart-lg">
-                                            <canvas id="chartjs-dashboard-scatter"></canvas>
+                                        <div class="mx-auto my-auto">
+                                            <div id="chart-scatter" class="mx-auto my-auto"></div>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 d-flex">
+                            <div class="col-12 col-md-12 col-lg-6 d-flex">
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
-                                        <span class="badge badge-primary float-right">Today</span>
+                                        <span class="badge badge-primary float-right">Hoy</span>
                                         <h5 class="card-title mb-0">Distribuci&oacute;n de temperaturas</h5>
                                     </div>
                                     <div class="card-body">
@@ -118,62 +119,46 @@
         </div>
 
         <script src="<?=URL?>public/js/app.js"></script>
+        <script src="<?=URL?>public/js/plotly.min.js"></script>
 
         <script>
-            $(function () {
-                new Chart(document.getElementById("chartjs-dashboard-scatter").getContext("2d"), {
-                    type: "scatter",
-                    data: {
-                        datasets: [
-                            {
-                                label: "Temperaturas promedio ultima semana",
+            function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+            }
 
-                                data: [
-                                    {
-                                        x: 0,
-                                        y: 35.7,
-                                    },
-                                    {
-                                        x: "Lunes",
-                                        y: 36,
-                                    },
-                                    {
-                                        x: 2,
-                                        y: 35.2,
-                                    },
-                                    {
-                                        x: 3,
-                                        y: 36.5,
-                                    },
-                                    {
-                                        x: 4,
-                                        y: 38,
-                                    },
-                                    {
-                                        x: 5,
-                                        y: 38.2,
-                                    },
-                                    {
-                                        x: 6,
-                                        y: 35.5,
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    options: {
-                        scales: {
-                            xAxes: [
-                                {
-                                    type: "linear",
-                                    position: "bottom",
-                                },
-                            ],
-                        },
-                    },
-                });
-                // Line chart
-            });
+            Plotly.newPlot('chart-scatter', [{
+                y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
+                x:['lunes','martes','miercoles','jueves','viernes','sabado','domingo'],
+                type: 'line',
+                mode: 'markers',
+                
+            }], {displayModeBar: false});
+
+            var trace1 = {
+            type: 'line',
+            mode: 'markers',
+            y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
+            x:['lunes','martes','miercoles','jueves','viernes','sabado','domingo'],
+            marker: {
+                line: {
+                    width: 5.5,
+                    color: '#f44455'
+                }
+            }
+            };
+
+            var data = [ trace1 ];
+
+            var config = {responsive: true}
+
+            Plotly.newPlot('chart-scatter', data, config );
+
+
         </script>
         <script>
             $(function () {

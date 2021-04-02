@@ -120,3 +120,7 @@ p, a {
     opacity: 0.5;
 
 }
+
+.modebar{
+    display: none !important;
+}

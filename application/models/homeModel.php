@@ -10,6 +10,7 @@ class HomeModel extends Model {
     private $locations;
     private $employees_n;
     private $entries;
+    private $tempsSum;
     
 
     function __constructor() {
@@ -21,6 +22,7 @@ class HomeModel extends Model {
         $this->entries = [];
         $this->locations = [];
         $this->employees_n = [];
+        $this->tempsSum = 0;
     }
 
     public function setUser($user) {
@@ -184,10 +186,10 @@ class HomeModel extends Model {
 
         //GET CURRENT ACCESS
         //$hora = date("Y-m-d");       
-        $hora = "2021-02-01";
+        $hora = "2021-02-20";
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
-            $sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
-            //$sql = "SELECT DISTINCT datos, hora FROM (SELECT DISTINCT hora, datos FROM marca WHERE clave = ':clave') T";
+            //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
+            $sql = "SELECT datos, hora, consecutivo, clave FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
             $query = $this->db->prepare($sql);
             $query->execute(array(":clave" => $location));
             while($row = $query->fetch()){
@@ -197,6 +199,39 @@ class HomeModel extends Model {
             }
         }
         $_SESSION['CURRENTDATE-ENTRIES']=count($this->entries);
+
+        //GET CURRENT AVERAGE TEMP     
+        $hora = "2021-02-20";
+        $temp = [];
+        $temp2 = [];
+        foreach($_SESSION['LOCATIONS-CVE'] as $location) {
+            //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
+            $sql = "SELECT datos, hora, consecutivo, clave, complemento FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(":clave" => $location));
+            $temp = $query->fetchAll();
+            foreach ($temp as $t) {
+                if($hora == strtok($t["hora"]," ")){
+                    $temp2[] = preg_split( "/[ =]/", $t["complemento"] );
+                }
+            }
+            for ($i=0; $i < count($temp2); $i++){ 
+                $this->tempsSum += (double)$temp2[$i][7];
+            }
+            $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
+            
+            //FOR OPTIMIZING
+            //if($hora == strtok(w$row["hora"]," ")){
+              //  $temp[] = preg_split( "/[ =]/", $row["complemento"] );   
+            //}
+                /*if (!$row) {
+                    for ($i=0; $i < count($temp); $i++){ 
+                    $this->tempsSum[] = $temp[$i][7];
+                    }  
+                }*/
+            //}
+        }
+        $_SESSION['AVERAGE-TEMPS']=($this->tempsSum);
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",
                         "Inicio de sesion exitoso!");

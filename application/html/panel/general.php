@@ -51,7 +51,7 @@
                                                 <i class="feather-lg text-success" data-feather="thermometer"></i>
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$todayG_avg_temp?></h3>
+                                                <h3 class="mb-2"><?=$_SESSION["AVERAGE-TEMPS"]?>°C</h3>
                                                 <div class="mb-0">Temperatura promedio</div>
                                             </div>
                                         </div>

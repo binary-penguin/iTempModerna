@@ -26,11 +26,11 @@
 
 
                                 <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
-                                
+                            
                                 <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
                                     <?php $location_index = array_search($location, $_SESSION['LOCATIONS-NAME']); ?>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link" href="pirineos1.html">
+                                        <a class="sidebar-link" href="<?=URL?>location/load/<?=$location_index?>">
                                             <?=utf8_encode($location)?>
                                             <?php foreach ($_SESSION['EMPLOYEES-N'] as $employees_n): ?>
                                                 <?php $employees_index = array_search($employees_n, $_SESSION['EMPLOYEES-N']);?>

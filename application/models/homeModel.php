@@ -98,6 +98,10 @@ class HomeModel extends Model {
     }
 
     private function prepareSession() {
+
+        $_SESSION['DATE'] = "2021-02-19";
+        //$_SESSION['DATE'] = date("Y-m-d"); 
+
         // GET SESSION NAME
         $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
         $query = $this->db->prepare($sql);
@@ -185,15 +189,14 @@ class HomeModel extends Model {
         $_SESSION['EMPLOYEES-N']=$this->employees_n;
 
         //GET CURRENT ACCESS
-        //$hora = date("Y-m-d");       
-        $hora = "2021-02-19";
+        
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
-            //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
+
             $sql = "SELECT datos, hora, consecutivo, clave FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
             $query = $this->db->prepare($sql);
             $query->execute(array(":clave" => $location));
             while($row = $query->fetch()){
-                if($hora == strtok($row["hora"]," ")){
+                if($_SESSION['DATE'] == strtok($row["hora"]," ")){
                     $this->entries[] = strtok($row["hora"]," ");
                 }
             }
@@ -202,7 +205,7 @@ class HomeModel extends Model {
         $_SESSION['CURRENTDATE-ENTRIES']=count($this->entries);
 
         //GET CURRENT AVERAGE TEMP     
-        $hora = "2021-02-19";
+        
         $temp = [];
         $temp2 = [];
 
@@ -216,7 +219,7 @@ class HomeModel extends Model {
             $query->execute(array(":clave" => $location));
             $temp = $query->fetchAll();
             foreach ($temp as $t) {
-                if($hora == strtok($t["hora"]," ")){
+                if($_SESSION['DATE'] == strtok($t["hora"]," ")){
                     $temp2[] = preg_split( "/[ =]/", $t["complemento"] );
                 }
             }

@@ -138,11 +138,7 @@
             </div>
            
         </div>
-            <?= "EMPLOYEES" . var_dump($array_employees) . "<br>"?>
-            <?= "LOW" . var_dump($array_low) . "<br>"?>
-            <?= "NORMAL" . var_dump($array_normal) . "<br>"?>
-            <?= "HIGH" . var_dump($array_high) . "<br>"?>
-
+           
 
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="<?=URL?>public/js/plotly.min.js"></script>
@@ -160,6 +156,7 @@
             }
             return color;
             }
+
             var trace1 = {
             type: 'line',
             mode: 'markers',

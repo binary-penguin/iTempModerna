@@ -18,27 +18,18 @@ class LocationModel extends Model {
     public $array_employees;
     public $tempsSum;
 
-    function __constructor() {
-        $this->current_index = 0;
-        $this->current_cve = $_SESSION['LOCATIONS-CVE'][0];
-        $this->current_name = $_SESSION['LOCATIONS-NAME'][0];
-        $this->current_entries = 0;
-        $this->current_average = 0;
-        $this->current_low = 0;
-        $this->current_normal = 0;
-        $this->current_high = 0;
-        $this->border = "";
+
+    public function prepareLocation() {
+        $this->tempsSum = 0;
+        $this->current_average = 0.0;
+        $this->current_cve = $_SESSION['LOCATIONS-CVE'][$this->current_index];
+        $this->current_name = $_SESSION['LOCATIONS-NAME'][$this->current_index];
         $this->array_employees = [];
+        $this->current_entries = 0;
+        $this->border = "";
         $this->array_high = [];
         $this->array_normal = [];
         $this->array_low = [];
-        $this->tempsSum - 0;
-    }
-
-    public function prepareLocation() {
-
-        $this->current_cve = $_SESSION['LOCATIONS-CVE'][$this->current_index];
-        $this->current_name = $_SESSION['LOCATIONS-NAME'][$this->current_index];
 
 
     }
@@ -74,6 +65,7 @@ class LocationModel extends Model {
 
 
         // Create employees array
+    
         $this->array_employees = $new_entries;
 
         $this->current_entries = count($entries);

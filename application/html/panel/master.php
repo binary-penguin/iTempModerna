@@ -69,7 +69,9 @@
                                                         <br>
                                                     </div>
                                                 </div>
-
+                                            
+                                            <svg data-jdenticon-value="Rosal" width="70" height="70"></svg>
+                                            <br><br>
                                             <h3><?=$db_name?></h3>
                                             <h5 class="card-title bold-h5">Número de empleado: <?=$user?></h5>
                                             <br>
@@ -116,19 +118,12 @@
                                                         <br>
                                                     </div>
                                             </div>
+                                            <svg data-jdenticon-value="au" width="70" height="70"></svg>
+                                            <br><br>
                                             <h3><?=$db_name?></h3>
                                             <h5 class="card-title bold-h5">Número de empleado: <?=$user?></h5>
                                             <br>
                                             <form name="permisos" action="<?= URL?>master/update" method="POST" id="f_ubicaciones">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <p class="campo">Mofesa Navojoa PROFACE X</p>
-                                                        
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="checkbox" name="planta[]" value="cjrz194960019" id="cjrz194960019" disabled/>
-                                                    </div>
-                                                </div>
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <p class="campo">VIGILANCIA PIRINEOS PROFACE XTD</p>
@@ -301,6 +296,7 @@
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="<?= URL?>public/js/contra.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
 
     </body>
 </html>

@@ -79,7 +79,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <i class="align-middle my-auto" data-feather="thermometer"></i>
+                        <i style="width: 50px; height:50px;"class="myimg align-middle my-auto" data-feather="thermometer"></i>
                         <h1>iTemp</h>
                     </div>
                     <div class="col-6 text-end">

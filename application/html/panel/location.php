@@ -97,7 +97,7 @@
                                     <div class="card-body">
                                         <br>
                                         <div class="media">
-                                            <canvas id="chartjs-dashboard-pie"></canvas>
+                                            <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
                                             <br>
                                         </div>
                                         <br>
@@ -185,6 +185,7 @@
                 // Pie chart
                 new Chart(document.getElementById("chartjs-dashboard-pie"), {
                     type: "pie",
+                    
                     data: {
                         labels: [
                                     [ "Altos", "",
@@ -221,6 +222,7 @@
                     options: {
                         responsive: !window.MSInputMethodContext,
                         maintainAspectRatio: false,
+                        
                         legend: {
                             display: false,
                         },

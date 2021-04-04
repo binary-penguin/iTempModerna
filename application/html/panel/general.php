@@ -95,7 +95,7 @@
                                     <div class="card-body">
                                         <br>
                                         <div class="media">
-                                            <canvas id="chartjs-dashboard-pie"></canvas>
+                                        <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
                                             <br>
                                         </div>
                                         <br>

@@ -11,7 +11,7 @@
                         <li class="sidebar-header">Explora</li>
 
                         <li class="sidebar-item">
-                            <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle feather-white" data-feather="bar-chart-2"></i> <span class="align-middle s-title">Gráficas</span> </a>
+                            <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle s-title">Gráficas</span> </a>
                             <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
                                 <li class="sidebar-item">
                                     <a class="sidebar-link" href="<?= URL?>general">

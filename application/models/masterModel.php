@@ -45,7 +45,7 @@ class MasterModel extends Model {
     }
     
     public function changeLocations() {
-
+        
         //1. clear all locations
         $sql = "DELETE FROM ubicacion WHERE usuario = :n_empleado";
         $query = $this->db->prepare($sql);

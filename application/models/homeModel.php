@@ -111,6 +111,7 @@ class HomeModel extends Model {
         $_SESSION['NAME'] = $row[0]["nombre_completo"];
         $_SESSION['NAME'] = strtolower($_SESSION['NAME']);
         $_SESSION['NAME'] = ucwords($_SESSION['NAME']);
+        
 
         // GET SESSION LOCATIONS (NAME)
         $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";

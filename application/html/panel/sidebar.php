@@ -37,8 +37,8 @@
                                                 
                                                 <?php if($location_index == $employees_index):?>
                                                     <span class="sidebar-badge badge badge-primary"><?=$employees_n?></span>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>     
+                                                <?php endif;?>
+                                            <?php endforeach;?>     
                                         </a>                 
                                     </li>
                                 <?php endforeach;?>

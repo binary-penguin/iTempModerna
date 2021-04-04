@@ -66,6 +66,7 @@
                                             <br>
                                             <br>
                                             <input type="submit" name="b_cambiar_mail" class="btn btn-danger" value="Cambiar correo electrónico" />
+                                            <br><br><br>
                                         </form>
                                     </div>
                                 </div>
@@ -111,6 +112,7 @@
                                             </div>
                                             <br>
                                             <input type="submit" name="b_cambiar_contra" class="btn btn-danger" value="Cambiar contraseña" />
+                                            <br><br><br>
                                         </form>
                                     </div>
                                 </div>

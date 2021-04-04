@@ -32,7 +32,7 @@
                         <div class="col-12 col-xl d-flex text-center">
                             <div class="card flex-fill">
                                 <div class="card-body">
-                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="user127" width="120" height="120" onclick="launchModal();"></svg>
+                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="pipipupucheck" width="120" height="120" onclick="launchModal();"></svg>
                                     <br><br>
                                     <img id="r1">
                                     <h3><?=$_SESSION['NAME']?></h3>

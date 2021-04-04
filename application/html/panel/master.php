@@ -304,7 +304,7 @@
 
     </body>
 </html>
-
+<?= $message?>
 <?php if ((isset($match)) && ($match == 0)): ?>
 <script> document.getElementById("txt-modal").innerText = "<?= $message; ?>" </script>
 <script>document.getElementById("bt-modal").click();</script>

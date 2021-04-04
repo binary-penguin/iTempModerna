@@ -25,7 +25,7 @@
                                 </li>
 
 
-                                <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="<?=URL?>employee">Por persona</a></li>
                             
                                 <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
                                     <?php $location_index = array_search($location, $_SESSION['LOCATIONS-NAME']); ?>

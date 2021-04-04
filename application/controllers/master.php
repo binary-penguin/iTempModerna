@@ -26,11 +26,24 @@ class Master extends Controller {
             $this->model->changePswAdmin();
         }
         else if (isset($_POST["b_cambiar_ubi"])) {
-            $this->model->setUser($_POST["t_user"]);
-            $this->model->setLocations($_POST["planta"]);
-            $this->model->changeLocations();
-            $this->model->checkLocations();
-            $this->view->renderPanel($this->model->getData());
+            if (isset($_POST["planta"])) {
+                $this->model->setUser($_POST["t_user"]);
+                $this->model->setLocations($_POST["planta"]);
+                $this->model->changeLocations();
+                $this->model->checkLocations();
+                $this->view->renderPanel($this->model->getData());
+            }
+            else{
+                $this->model = $this->loadModel('masterModel');
+                $this->view = $this->loadView('masterView', 'master');
+                // Set user to current user TO DO
+                $this->model->setSearch($_SESSION["USER"]);
+                $this->model->searchUser();
+                $this->model->checkLocations();
+                $this->view->renderPanel(array("message"=>"Selecciona por lo menos una planta", 'match'=>0));
+            
+            }
+
         
         }
     }

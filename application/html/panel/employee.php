@@ -13,7 +13,7 @@
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
                                 </a>
-                                <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
+                                <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
@@ -66,11 +66,12 @@
                                     <div class="card-body py-4">
                                         <div class="media">
                                             <div class="d-inline-block mt-2 mr-3">
-                                                            
+                                                <i class="feather-lg text-danger" data-feather="thermometer"></i>                
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$current_average?>°C</h3>
-                                                <div class="mb-0">Temperatura promedio <b>Semanal</b></div>
+                                            
+                                                <h3 class="mb-2">37°C</h3>
+                                                <div class="mb-0">Temperatura promedio <b>Semanal (Alta)</b></div>
                                             </div>
                                         </div>
                                     </div>
@@ -118,15 +119,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-primary"></i> Bajos (< 36°C)</td>
-                                                    <td class="text-right"><?=$current_low?></td>
+                                                    <td class="text-right">3</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-success"></i> Normales (36°C - 37°C)</td>
-                                                    <td class="text-right"><?=$current_normal?></td>
+                                                    <td class="text-right">10</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-danger"></i> Altos (> 37°C)</td>
-                                                    <td class="text-right"><?=$current_high?></td>
+                                                    <td class="text-right">2</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -167,7 +168,8 @@
         <script src="<?=URL?>public/js/plotly.min.js"></script>
         <script src="<?= URL?>public/js/contra.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
- 
+        <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
+
 
         
 
@@ -185,7 +187,7 @@
 
             var trace1 = {
             type: 'line',
-            y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
+            y:[36.5,36.2,36,36.9,37,37.5,37,37.2],
             x:['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
             marker: {
                 line: {
@@ -211,35 +213,13 @@
                 new Chart(document.getElementById("chartjs-dashboard-pie"), {
                     type: "pie",
                     data: {
-                        labels: [
-                                    [ "Altos", "",
-                                    <?php if (isset($array_high)): ?>
-                                        <?php foreach ($array_high as $registry):?>
-                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
-                                        <?php endforeach;?>
-                                    <?php endif;?>
-                                    ],
-                                    [ "Normales", "",
-                                    <?php if (isset($array_normal)): ?>
-                                        <?php foreach ($array_normal as $registry):?>
-                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
-                                        <?php endforeach;?>
-                                    <?php endif;?>
-                                    ],
-                                    [ "Bajos", "",
-                                    <?php if (isset($array_low)): ?>
-                                        <?php foreach ($array_low as $registry):?>
-                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
-                                        <?php endforeach;?>
-                                    <?php endif;?>
-                                    ],
-                                
-                                ],
+                        labels: ["Altos", "Normales", "Bajos"],
+                             
                         datasets: [
                             {
-                                data: ["<?=$current_high?>", "<?=$current_normal?>", "<?=$current_low?>"],
+                                data: ["2", "10", "3"],
                                 backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary],
-                                borderColor:"<?=$border?>",
+                                borderColor:"#FFFFFF",
                             },
                         ],
                     },

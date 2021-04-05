@@ -159,7 +159,6 @@
 
             var trace1 = {
             type: 'line',
-            mode: 'markers',
             y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
             x:['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
             marker: {

@@ -87,10 +87,9 @@ class EmployeeModel extends Model {
             // Change Time config
             list($fecha, $hora) = explode(".", $row["hora"]);
             // AM/PM is defined before the locale cause there is no implementation for AM/PM in Spanish
-            $am_pm =  strftime("%p", strtotime($fecha));
             setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
             //echo "FECHA " . $fecha . "<br>";
-            $fecha = strftime("%A %d de %B del %Y a las %r " . $am_pm, strtotime($fecha));
+            $fecha = strftime("%A %d de %B del %Y a las %r hrs");
             //echo "FECHA FORMATEADA " . $fecha . "<br>";
             //echo "LECTURA " . $lectura . "<br>";
             $this->last_registry = ["date" => $fecha, "registry" => $lectura];

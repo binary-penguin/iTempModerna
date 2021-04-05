@@ -21,17 +21,22 @@ class Signup extends Controller {
         if (isset($_POST["b_add"])) {
 
             //Call to model and then render the Html again
-            $this->model->setUser($_POST["e_number"]);
-            $this->model->setPassword($_POST["psw"]);
-            $this->model->setMail($_POST["mail"]);
-            $this->model->setType($_POST["c_tipo"]);
-            $this->model->setLocations($_POST["planta"]);
-
-            $this->model->validate();
-            $this->model->register();
-            $this->view->renderPanel($this->model->getData());
-    
-
+            //
+            if (isset($_POST["planta"])) {
+                $this->model->setUser($_POST["e_number"]);
+                $this->model->setPassword($_POST["psw"]);
+                $this->model->setMail($_POST["mail"]);
+                $this->model->setType($_POST["c_tipo"]);
+                $this->model->setLocations($_POST["planta"]);
+                $this->model->validate();
+                $this->model->register();
+                $this->view->renderPanel($this->model->getData());
+            }
+            else{
+                $this->view->renderPanel(array("message"=>"Selecciona por lo menos una planta", 'match'=>0));
+            
+            }
+            //echo $_POST["planta"];
             // To echo the next line comment line addData line
             //echo var_dump($this->data);
         }

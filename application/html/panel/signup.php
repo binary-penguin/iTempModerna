@@ -85,7 +85,7 @@
                                                 <br><br>
 
                                                 <h5 class="bold-h5">Contraseña</h5>
-                                                <input type="password" id="psw" name="c_contra" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
+                                                <input type="password" id="psw" name="psw" class="campo-psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="" required>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-12">
@@ -126,19 +126,10 @@
                                                             <br>
                                                                 <div class="row">
                                                                     <div class="col-6">
-                                                                        <p class="campo">Mofesa Navojoa PROFACE X</p>
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <input type="checkbox" name="planta[]" value="cjrz194960019" id="cjrz194960019"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-6">
                                                                         <p class="campo">VIGILANCIA PIRINEOS PROFACE XTD</p>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <input type="checkbox" name="planta[]" value="ckjb201760199"  id="ckjb201760199"/>
+                                                                        <input type="checkbox" name="planta[]" value="ckjb201760199"  id="ckjb201760199" checked/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">

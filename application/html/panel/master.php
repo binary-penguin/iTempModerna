@@ -38,7 +38,7 @@
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
                                 </a>
-                                <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
+                                <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
@@ -70,7 +70,7 @@
                                                     </div>
                                                 </div>
                                             
-                                            <svg data-jdenticon-value="Rosal" width="70" height="70"></svg>
+                                            <svg data-jdenticon-value="lola2" width="70" height="70"></svg>
                                             <br><br>
                                             <h3><?=$db_name?></h3>
                                             <h5 class="card-title bold-h5">Número de empleado: <?=$user?></h5>
@@ -118,7 +118,7 @@
                                                         <br>
                                                     </div>
                                             </div>
-                                            <svg data-jdenticon-value="au" width="70" height="70"></svg>
+                                            <svg data-jdenticon-value="lola2" width="70" height="70"></svg>
                                             <br><br>
                                             <h3><?=$db_name?></h3>
                                             <h5 class="card-title bold-h5">Número de empleado: <?=$user?></h5>

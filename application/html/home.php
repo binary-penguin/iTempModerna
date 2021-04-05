@@ -86,7 +86,6 @@
                         <h4>Ligas de interes:</h4>
                         <ul class="list-unstyled">
                             <li><a href="<?= URL?>team">>Nuestro equipo</a></li>
-                            <li><a href="<?= URL?>csv">>Agrega registros CSV</a></li>
                         </ul>
                     </div>
                 </div>

@@ -10,7 +10,8 @@
                         <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                             <i class="align-middle" data-feather="settings"></i>
                         </a>
-                        <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
+                        <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
+
                         <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                         <span class="text-dark"><?=$_SESSION['NAME']?></span>
                         </a>
@@ -32,7 +33,7 @@
                         <div class="col-12 col-xl d-flex text-center">
                             <div class="card flex-fill">
                                 <div class="card-body">
-                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="pipipupucheck" width="180" height="180" onclick="launchModal();"></svg>
+                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="180" height="180" onclick="launchModal();"></svg>
                                     <br>
                                     <img id="r1">
                                     <h3><?=$_SESSION['NAME']?></h3>

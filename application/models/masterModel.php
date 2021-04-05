@@ -161,6 +161,14 @@ class MasterModel extends Model {
         $this->search = $search;
     }
 
+    public function setMatch($match){
+        $this->match = $match;
+    }
+
+    public function setMessage($message){
+        $this->message = $message;
+    }
+
     public function getUser() {
         return $this->e_number;
     }

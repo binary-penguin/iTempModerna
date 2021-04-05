@@ -11,6 +11,7 @@ class HomeModel extends Model {
     private $employees_n;
     private $entries;
     private $tempsSum;
+    private $search;
     
 
     function __constructor() {
@@ -18,7 +19,8 @@ class HomeModel extends Model {
         $this->password = "";
         $this->auth = "";
         $this->message = "";
-        $this->hash = '';
+        $this->hash = "";
+        $this->search = "";
         $this->entries = [];
         $this->locations = [];
         $this->employees_n = [];
@@ -49,7 +51,7 @@ class HomeModel extends Model {
     }
 
     public function validateUser() {
-        
+        $this->searchUser();
         $this->user = strip_tags($this->user);
         $this->password = strip_tags($this->password);
         $this->encryption();
@@ -263,6 +265,20 @@ class HomeModel extends Model {
 
     }
 
+    public function searchUser() {
+
+        $sql = "SELECT n_empleado FROM usuario WHERE n_empleado=:search OR correo=:search"; 
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':search' => $this->search));
+        $row = $query->fetchAll();
+
+        if($row){
+            $this->auth = 1;
+            $this->setUser($row[0]["n_empleado"]);
+            
+        }
+    }
+
     public function sendMail($to, $subject) {
 
         // Message
@@ -307,6 +323,10 @@ class HomeModel extends Model {
         //ñmail($to, $subject, $message, implode("\r\n", $headers));
         mail($to, $subject, $message2, implode("\r\n", $headers));
 
+    }
+
+    public function setSearch($search) {
+        $this->search = $search;
     }
 
     public function getData() {

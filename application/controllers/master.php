@@ -34,19 +34,25 @@ class Master extends Controller {
                 $this->view->renderPanel($this->model->getData());
             }
             else{
-                $this->model = $this->loadModel('masterModel');
-                $this->view = $this->loadView('masterView', 'master');
-                // Set user to current user TO DO
                 $this->model->setSearch($_SESSION["USER"]);
                 $this->model->searchUser();
                 $this->model->checkLocations();
-                $this->view->renderPanel(array("message"=>"Selecciona por lo menos una planta", 'match'=>0));
+                $this->model->setMessage("Selecciona por lo menos una planta");
+                $this->model->setMatch(0);
+                $this->view->renderPanel($this->model->getData());
+                //header("Location:".URL."master/error");
+                //$this->model = $this->loadModel('masterModel');
+                //$this->view = $this->loadView('masterView', 'master');
+                // Set user to current user TO DO
+                // $this->model->setSearch($_SESSION["USER"]);
+                // $this->model->searchUser();
+                // $this->model->checkLocations();
+                // $this->view->renderPanel(array("message"=>"Selecciona por lo menos una planta", 'match'=>0));
             
             }
-
-        
         }
     }
+
     public function findUser() {
         if (isset($_POST["b_search"])) {
             $this->model->setSearch($_POST["b_search"]);

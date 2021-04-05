@@ -34,7 +34,6 @@ class Signup extends Controller {
             }
             else{
                 $this->view->renderPanel(array("message"=>"Selecciona por lo menos una planta", 'match'=>0));
-            
             }
             //echo $_POST["planta"];
             // To echo the next line comment line addData line

@@ -124,3 +124,8 @@ p, a {
 .modebar{
     display: none !important;
 }
+
+canvas {
+    position:relative; 
+    z-index: 200;
+}

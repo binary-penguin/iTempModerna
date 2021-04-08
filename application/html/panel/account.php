@@ -10,7 +10,8 @@
                         <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                             <i class="align-middle" data-feather="settings"></i>
                         </a>
-                        <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
+                        <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
+
                         <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                         <span class="text-dark"><?=$_SESSION['NAME']?></span>
                         </a>
@@ -32,8 +33,9 @@
                         <div class="col-12 col-xl d-flex text-center">
                             <div class="card flex-fill">
                                 <div class="card-body">
-                                    <img class="rounded-circle z-depth-2 img-thumbnail pp" src="<?=$_SESSION['PP']?>" onclick="launchModal();">
-                                    <br><br>
+                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="180" height="180" onclick="launchModal();"></svg>
+                                    <br>
+                                    <img id="r1">
                                     <h3><?=$_SESSION['NAME']?></h3>
                                     <br>
                                     <h5 class="card-title bold-h5">Número de empleado: <?=$_SESSION['USER']?></h5>
@@ -87,6 +89,7 @@
                                         https://drive.google.com/uc?export=view&id=14nepZgEy5nbs7Wfhxq9hQ0Fy5_a8WL31</option>
                             </select>
                         </div>
+                        
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
@@ -99,9 +102,28 @@
         
     </div>
     </div>
+    <script>
+
+        var mySVG    = document.querySelector('pp'),      // Inline SVG element
+            tgtImage = document.querySelector('r1'),      // Where to draw the result
+            can      = document.createElement('canvas'), // Not shown on page
+            ctx      = can.getContext('2d'),
+            loader   = new Image;                        // Not shown on page
+
+        loader.width  = can.width  = tgtImage.width;
+        loader.height = can.height = tgtImage.height;
+        loader.onload = function(){
+        ctx.drawImage( loader, 0, 0, loader.width, loader.height );
+        tgtImage.src = can.toDataURL();
+        };
+        var svgAsXML = (new XMLSerializer).serializeToString( mySVG );
+        loader.src = 'data:image/svg+xml,' + encodeURIComponent( svgAsXML );
     
+    </script>
     <script src="<?=URL?>public/js/app.js"></script>
     <script src="<?= URL?>public/js/contra.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
+    </script>
     
     
     <script src='<?=URL?>public/js/jquery-3.6.0.js'></script>

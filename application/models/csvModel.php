@@ -7,22 +7,23 @@ class csvModel {
 
     function __construct() {
 
+        $host = '127.0.0.1';
+        $user = 'azure';
+        $password = '6#vWHD_$';
+        $db = 'moderna2';
+        $port = 55031;
+        $connect_db = mysqli_connect($host,$user,$password,$db, $port);
+        
+
+        /*
         $host = 'localhost';
         $user = 'root';
         $password = '';
         $db = 'moderna2';
         $port = 3306;
         $connect_db = mysqli_connect($host,$user,$password,$db, $port);
-
-        /*
         
         
-        $host = '127.0.0.1';
-        $user = 'azure';
-        $password = '6#vWHD_$';
-        $db = 'moderna2';
-        $port = 54978;
-        $connect_db = mysqli_connect($host,$user,$password,$db, $port);
         */
 
 
@@ -247,6 +248,139 @@ class csvModel {
                 }
         
                 echo "marcas4 Inserted!!";
+            
+            }
+
+            elseif (isset($_POST['marcas5']) ) { 
+        
+                // Add temps
+                $temps = $this->getRegistries(URL . 'public/csv/marca5.csv', array('csvModel','parseTemps'));
+        
+                foreach ($temps as $temp) {
+        
+                    $transferencia = $temp['transferencia'];
+                    $consecutivo = $temp['consecutivo'];
+                    $hora = $temp['hora'];
+                    $lector = $temp['lector'];
+                    $f_creacion = $temp['f_creacion'];
+                    $datos = $temp['datos'];
+                    $clave = $temp['clave'];
+                    $ubicacion = $temp['ubicacion'];
+                    $codigo_marca = $temp['codigo_marca'];
+                    $complemento = $temp['complemento'];
+        
+                    $query_temp = "INSERT INTO marca (transferencia, hora, lector, f_creacion, datos, clave, ubicacion, codigo_marca, complemento) VALUES
+                                    (" . $transferencia . ", '" . $hora . "', " . "'" . $lector . "', '" . $f_creacion . "', " . "'" . $datos . "', '" . $clave . "', " . "'" . $ubicacion . 
+                                    "', '" . $codigo_marca . "', " . "'" . $complemento . "')";
+        
+                    $yeah = mysqli_query($connect_db, $query_temp);
+                    //echo $query_temp . "<br>";
+        
+                    if (!$yeah) {
+                        //echo "ERROR WHILE INSERTING TEMP!! <br>";
+                    }
+                }
+        
+                echo "marcas5 Inserted!!";
+            
+            }
+            elseif (isset($_POST['marcas6']) ) { 
+        
+                // Add temps
+                $temps = $this->getRegistries(URL . 'public/csv/marca6.csv', array('csvModel','parseTemps'));
+        
+                foreach ($temps as $temp) {
+        
+                    $transferencia = $temp['transferencia'];
+                    $consecutivo = $temp['consecutivo'];
+                    $hora = $temp['hora'];
+                    $lector = $temp['lector'];
+                    $f_creacion = $temp['f_creacion'];
+                    $datos = $temp['datos'];
+                    $clave = $temp['clave'];
+                    $ubicacion = $temp['ubicacion'];
+                    $codigo_marca = $temp['codigo_marca'];
+                    $complemento = $temp['complemento'];
+        
+                    $query_temp = "INSERT INTO marca (transferencia, hora, lector, f_creacion, datos, clave, ubicacion, codigo_marca, complemento) VALUES
+                                    (" . $transferencia . ", '" . $hora . "', " . "'" . $lector . "', '" . $f_creacion . "', " . "'" . $datos . "', '" . $clave . "', " . "'" . $ubicacion . 
+                                    "', '" . $codigo_marca . "', " . "'" . $complemento . "')";
+        
+                    $yeah = mysqli_query($connect_db, $query_temp);
+                    //echo $query_temp . "<br>";
+        
+                    if (!$yeah) {
+                        //echo "ERROR WHILE INSERTING TEMP!! <br>";
+                    }
+                }
+        
+                echo "marcas6 Inserted!!";
+            
+            }
+            elseif (isset($_POST['marcas7']) ) { 
+        
+                // Add temps
+                $temps = $this->getRegistries(URL . 'public/csv/marca7.csv', array('csvModel','parseTemps'));
+        
+                foreach ($temps as $temp) {
+        
+                    $transferencia = $temp['transferencia'];
+                    $consecutivo = $temp['consecutivo'];
+                    $hora = $temp['hora'];
+                    $lector = $temp['lector'];
+                    $f_creacion = $temp['f_creacion'];
+                    $datos = $temp['datos'];
+                    $clave = $temp['clave'];
+                    $ubicacion = $temp['ubicacion'];
+                    $codigo_marca = $temp['codigo_marca'];
+                    $complemento = $temp['complemento'];
+        
+                    $query_temp = "INSERT INTO marca (transferencia, hora, lector, f_creacion, datos, clave, ubicacion, codigo_marca, complemento) VALUES
+                                    (" . $transferencia . ", '" . $hora . "', " . "'" . $lector . "', '" . $f_creacion . "', " . "'" . $datos . "', '" . $clave . "', " . "'" . $ubicacion . 
+                                    "', '" . $codigo_marca . "', " . "'" . $complemento . "')";
+        
+                    $yeah = mysqli_query($connect_db, $query_temp);
+                    //echo $query_temp . "<br>";
+        
+                    if (!$yeah) {
+                        //echo "ERROR WHILE INSERTING TEMP!! <br>";
+                    }
+                }
+        
+                echo "marcas7 Inserted!!";
+            
+            }
+            elseif (isset($_POST['marcas8']) ) { 
+        
+                // Add temps
+                $temps = $this->getRegistries(URL . 'public/csv/marca8.csv', array('csvModel','parseTemps'));
+        
+                foreach ($temps as $temp) {
+        
+                    $transferencia = $temp['transferencia'];
+                    $consecutivo = $temp['consecutivo'];
+                    $hora = $temp['hora'];
+                    $lector = $temp['lector'];
+                    $f_creacion = $temp['f_creacion'];
+                    $datos = $temp['datos'];
+                    $clave = $temp['clave'];
+                    $ubicacion = $temp['ubicacion'];
+                    $codigo_marca = $temp['codigo_marca'];
+                    $complemento = $temp['complemento'];
+        
+                    $query_temp = "INSERT INTO marca (transferencia, hora, lector, f_creacion, datos, clave, ubicacion, codigo_marca, complemento) VALUES
+                                    (" . $transferencia . ", '" . $hora . "', " . "'" . $lector . "', '" . $f_creacion . "', " . "'" . $datos . "', '" . $clave . "', " . "'" . $ubicacion . 
+                                    "', '" . $codigo_marca . "', " . "'" . $complemento . "')";
+        
+                    $yeah = mysqli_query($connect_db, $query_temp);
+                    //echo $query_temp . "<br>";
+        
+                    if (!$yeah) {
+                        //echo "ERROR WHILE INSERTING TEMP!! <br>";
+                    }
+                }
+        
+                echo "marcas8 Inserted!!";
             
             }
         

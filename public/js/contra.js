@@ -9,3 +9,7 @@ function mostrar(id){
 function launchModal() {
     document.getElementById("bt-modal").click();
 }
+
+function randomWord() {
+    return Math.random().toString(36).substring(7);
+} 

@@ -3,6 +3,10 @@
                     <a class="sidebar-toggle d-flex mr-2">
                         <i class="hamburger align-self-center"></i>
                     </a>
+                    <form class="form-inline d-none d-inline-block" action="<?= URL?>employee/findEmployee" method="POST">
+                        <input name="b_search" class="form-control form-control-no-border mr-sm-2" type="text" placeholder="Buscar nombre/número..." aria-label="Search"/>
+                        
+                    </form>
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
@@ -24,20 +28,34 @@
 
                 <main class="content">
                     <div>
-                        <h1>Vista General</h1>
+                        <h1><?= utf8_encode($current_name);?></h1>
+                        <h5>Número de Empleado: <?= utf8_encode($current_cve);?></h5>         
+                        <br>    
                     </div>
                     <div class="container-fluid p-0">
                         <div class="row">
                             <div class="col-12 col-sm-6 col-xl d-flex">
+                                
                                 <div class="card flex-fill">
                                     <div class="card-body py-4">
                                         <div class="media">
                                             <div class="d-inline-block mt-2 mr-3">
-                                                <i class="feather-lg text-warning" data-feather="users"></i>
+                                                <?php if(($current_average >= 36) && ($current_average <= 37)): ?>
+                                                    <i class="feather-lg text-success" data-feather="thermometer"></i>
+                                                    <?php $alert="(Normal)";?>
+                                                <?php endif;?>
+                                                <?php if($current_average < 36): ?>
+                                                    <i class="feather-lg text-primary" data-feather="thermometer"></i>
+                                                    <?php $alert="(Baja)";?>
+                                                <?php endif;?>
+                                                <?php if($current_average > 37): ?>
+                                                    <i class="feather-lg text-danger" data-feather="thermometer"></i>
+                                                    <?php $alert="(Alta)";?>
+                                                <?php endif;?>          
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$_SESSION["CURRENTDATE-ENTRIES"]?></h3>
-                                                <div class="mb-0">Ingresos</div>
+                                                <h3 class="mb-2"><?=$last_registry['registry']?>°C</h3>
+                                                <div class="mb-0">Ultima lectura el <?=utf8_encode($last_registry['date']) . " " . $alert?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -48,23 +66,12 @@
                                     <div class="card-body py-4">
                                         <div class="media">
                                             <div class="d-inline-block mt-2 mr-3">
-                                                <?php if(($_SESSION["AVERAGE-TEMPS"] >= 36) && ($_SESSION["AVERAGE-TEMPS"] <= 37)): ?>
-                                                    <i class="feather-lg text-success" data-feather="thermometer"></i>
-                                                    <?php $alert="(Normal)";?>
-                                                <?php endif;?>
-                                                <?php if($_SESSION["AVERAGE-TEMPS"] < 36): ?>
-                                                    <i class="feather-lg text-primary" data-feather="thermometer"></i>
-                                                    <?php $alert="(Baja)";?>
-                                                <?php endif;?>
-                                                <?php if($_SESSION["AVERAGE-TEMPS"] > 37): ?>
-                                                    <i class="feather-lg text-danger" data-feather="thermometer"></i>
-                                                    <?php $alert="(Alta)";?>
-                                                <?php endif;?>
-                                                
+                                                <i class="feather-lg text-danger" data-feather="thermometer"></i>                
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$_SESSION["AVERAGE-TEMPS"]?>°C</h3>
-                                                <div class="mb-0">Temperatura promedio <?=$alert?></div>
+                                            
+                                                <h3 class="mb-2">37°C</h3>
+                                                <div class="mb-0">Temperatura promedio <b>Semanal (Alta)</b></div>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +83,7 @@
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
                                         <span class="badge badge-primary float-right">Semanal</span>
-                                        <h5 class="card-title mb-0">Temperatura promedio</h5>
+                                        <h5 class="card-title mb-0">Diagrama de Dispersión</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="mx-auto my-auto">
@@ -89,13 +96,13 @@
                             <div class="col-12 col-md-12 col-lg-6 d-flex">
                                 <div class="card flex-fill w-100">
                                     <div class="card-header">
-                                        <span class="badge badge-primary float-right">Hoy</span>
+                                        <span class="badge badge-primary float-right">Semanal</span>
                                         <h5 class="card-title mb-0">Distribuci&oacute;n de temperaturas</h5>
                                     </div>
                                     <div class="card-body">
                                         <br>
                                         <div class="media">
-                                        <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
+                                            <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
                                             <br>
                                         </div>
                                         <br>
@@ -112,15 +119,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-primary"></i> Bajos (< 36°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-LOW']?></td>
+                                                    <td class="text-right">3</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-success"></i> Normales (36°C - 37°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-NORMAL']?></td>
+                                                    <td class="text-right">10</td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-danger"></i> Altos (> 37°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-HIGH']?></td>
+                                                    <td class="text-right">2</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -134,12 +141,39 @@
                     </div>
                 </main>
             </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="bt-modal">Launch Modal</button>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="staticBackdropLabel">&iexcl;Lo sentimos!</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="txt-modal" class="txt-modal"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Entendido</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+
+           
 
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="<?=URL?>public/js/plotly.min.js"></script>
+        <script src="<?= URL?>public/js/contra.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
 
+
+        
+
+        
 
         <script>
             function getRandomColor() {
@@ -150,9 +184,10 @@
             }
             return color;
             }
+
             var trace1 = {
             type: 'line',
-            y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
+            y:[36.5,36.2,36,36.9,37,37.5,37,37.2],
             x:['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
             marker: {
                 line: {
@@ -179,19 +214,12 @@
                     type: "pie",
                     data: {
                         labels: ["Altos", "Normales", "Bajos"],
+                             
                         datasets: [
                             {
-                                data: [<?=$_SESSION['CURRENTDATE-HIGH']?>, <?=$_SESSION['CURRENTDATE-NORMAL']?>, <?=$_SESSION['CURRENTDATE-LOW']?>],
-                                backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary, "#E8EAED"],
-                                borderColor:
-                                <?php if (((($_SESSION['CURRENTDATE-HIGH'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-NORMAL'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-LOW'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100)) {
-                                echo "'" ."#FFFFFF". "'"; 
-                                }
-                                else { 
-                                    echo "'" ."transparent"."'"; 
-                                }
-                                
-                                ?>,
+                                data: ["2", "10", "3"],
+                                backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary],
+                                borderColor:"#FFFFFF",
                             },
                         ],
                     },
@@ -207,3 +235,14 @@
         </script>
     </body>
 </html>
+
+<?php if ((isset($match)) && ($match == 0)): ?>
+<script> document.getElementById("txt-modal").innerText = "<?= $message; ?>" </script>
+<script>document.getElementById("bt-modal").click();</script>
+<?php endif ?>
+
+<?php if ((isset($access)) && ($access == 0)): ?>
+<script> document.getElementById("txt-modal").innerText = "<?= $message; ?>" </script>
+<script>document.getElementById("bt-modal").click();</script>
+<?php endif ?>
+

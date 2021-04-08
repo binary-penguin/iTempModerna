@@ -45,7 +45,7 @@ class MasterModel extends Model {
     }
     
     public function changeLocations() {
-
+        
         //1. clear all locations
         $sql = "DELETE FROM ubicacion WHERE usuario = :n_empleado";
         $query = $this->db->prepare($sql);
@@ -159,6 +159,14 @@ class MasterModel extends Model {
 
     public function setSearch($search){
         $this->search = $search;
+    }
+
+    public function setMatch($match){
+        $this->match = $match;
+    }
+
+    public function setMessage($message){
+        $this->message = $message;
     }
 
     public function getUser() {

@@ -11,7 +11,7 @@
                         <li class="sidebar-header">Explora</li>
 
                         <li class="sidebar-item">
-                            <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle feather-white" data-feather="bar-chart-2"></i> <span class="align-middle s-title">Gráficas</span> </a>
+                            <a href="#dashboards" data-toggle="collapse" class="sidebar-link"> <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle s-title">Gráficas</span> </a>
                             <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-parent="#sidebar">
                                 <li class="sidebar-item">
                                     <a class="sidebar-link" href="<?= URL?>general">
@@ -25,20 +25,20 @@
                                 </li>
 
 
-                                <li class="sidebar-item"><a class="sidebar-link" href="por_persona.html">Por persona</a></li>
-                                
+                                <li class="sidebar-item"><a class="sidebar-link" href="<?=URL?>employee">Por persona</a></li>
+                            
                                 <?php foreach ($_SESSION['LOCATIONS-NAME'] as $location): ?>
                                     <?php $location_index = array_search($location, $_SESSION['LOCATIONS-NAME']); ?>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link" href="pirineos1.html">
+                                        <a class="sidebar-link" href="<?=URL?>location/load/<?=$location_index?>">
                                             <?=utf8_encode($location)?>
                                             <?php foreach ($_SESSION['EMPLOYEES-N'] as $employees_n): ?>
                                                 <?php $employees_index = array_search($employees_n, $_SESSION['EMPLOYEES-N']);?>
                                                 
                                                 <?php if($location_index == $employees_index):?>
                                                     <span class="sidebar-badge badge badge-primary"><?=$employees_n?></span>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>     
+                                                <?php endif;?>
+                                            <?php endforeach;?>     
                                         </a>                 
                                     </li>
                                 <?php endforeach;?>

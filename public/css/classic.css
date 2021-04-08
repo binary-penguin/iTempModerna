@@ -2478,8 +2478,8 @@ fieldset:disabled a.btn {
 .fc-unthemed .show > .dropdown-toggle.fc-button,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #DE9307;
-    border-color: #DE9307;
+    background-color: #47bac1;
+    border-color: #47bac1;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -3296,7 +3296,7 @@ input[type="submit"].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #47bac1;
+    background-color: #DE9307;
 }
 .dropdown-item.disabled,
 .dropdown-item:disabled {
@@ -12014,7 +12014,7 @@ footer.footer ul {
     padding: 0.1rem 0.8rem;
     display: block;
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #f09f08;
     -webkit-transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
     transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
     line-height: 1.4;
@@ -12027,7 +12027,7 @@ footer.footer ul {
 .nav-flag:hover,
 .nav-icon.active,
 .nav-icon:hover {
-    color: #47bac1;
+    color: #f09f08;
 }
 .nav-flag .feather,
 .nav-flag svg,
@@ -12184,7 +12184,7 @@ a.sidebar-link svg {
 }
 .sidebar-item.active > .sidebar-link {
     color: black;
-    background: #F09F08;
+    background: #ffffff;
 }
 .sidebar-item.active .sidebar-link:hover i,
 .sidebar-item.active .sidebar-link:hover svg,
@@ -12232,19 +12232,19 @@ a.sidebar-link svg {
     font-weight: 400;
     font-size: 1.15rem;
     padding: 1.15rem 1.5rem;
-    color: #f09f08;
+    color: #ffffff;
     display: block;
 }
 .sidebar-brand:hover {
     text-decoration: none;
-    color: #ffffff;
+    color: #f09f08;
 }
 .sidebar-brand:focus {
     outline: 0;
 }
 .sidebar-brand .feather,
 .sidebar-brand svg {
-    color: #ffffff;
+    color: #f09f08;
     height: 24px;
     width: 24px;
     margin-left: -0.15rem;
@@ -12252,7 +12252,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-brand:hover svg {
-    color: #f09f08;
+    color: #ffffff;
 
 }
 .sidebar-toggle {
@@ -12298,25 +12298,6 @@ a.sidebar-link svg {
     padding: 1.125rem 1.5rem 0.375rem;
     font-size: 0.75rem;
     text-transform: none;
-}
-.sidebar-bottom {
-    -webkit-transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out;
-    transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out;
-    padding: 1rem;
-    width: inherit;
-    font-size: 0.8rem;
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    background: #313b4c;
-    min-width: 256px;
-    max-width: 256px;
-    color: #e9ecef;
-    border-right: 0;
-    margin-left: 0;
-}
-.sidebar-bottom h5 {
-    color: #e9ecef;
 }
 .sidebar.toggled .sidebar-bottom {
     margin-left: -256px;

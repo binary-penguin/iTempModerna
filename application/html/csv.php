@@ -39,6 +39,15 @@
                         <button class='btn btn-success m-2' name='marcas4'>Añadir Registros de Marcas4</button>
                     </form>
            </section>
+           <section class='row mt-4'>
+                    <div class="col-6 offset-3 text-center">
+                    <form method="POST">    
+                        <button class='btn btn-success m-2' name='marcas5'>Añadir Registros de Marcas5</button>
+                        <button class='btn btn-success m-2' name='marcas6'>Añadir Registros de Marcas6</button>
+                        <button class='btn btn-success m-2' name='marcas7'>Añadir Registros de Marcas7</button>
+                        <button class='btn btn-success m-2' name='marcas8'>Añadir Registros de Marcas8</button>
+                    </form>
+           </section>
            
        </section>
        <!-- Bootstrap Bundle with Popper -->

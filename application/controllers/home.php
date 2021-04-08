@@ -11,7 +11,7 @@ class Home extends Controller {
         if (isset($_POST["submit_user"])) {
             
             //Call to model and then render the Html again
-            $this->model->setUser($_POST["c_usuario"]);
+            $this->model->setSearch($_POST["c_usuario"]);
             $this->model->setPassword($_POST["c_contra"]);
             //echo var_dump($_POST["c_contra"]);
 

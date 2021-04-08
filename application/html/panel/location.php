@@ -9,7 +9,7 @@
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
                                 </a>
-                                <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
+                                <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
@@ -24,7 +24,9 @@
 
                 <main class="content">
                     <div>
-                        <h1>Vista General</h1>
+                        <h1><?= utf8_encode($current_name);?></h1>
+                        <h5><?= utf8_encode($current_cve);?></h5>         
+                        <br>    
                     </div>
                     <div class="container-fluid p-0">
                         <div class="row">
@@ -36,7 +38,7 @@
                                                 <i class="feather-lg text-warning" data-feather="users"></i>
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$_SESSION["CURRENTDATE-ENTRIES"]?></h3>
+                                                <h3 class="mb-2"><?=$current_entries?></h3>
                                                 <div class="mb-0">Ingresos</div>
                                             </div>
                                         </div>
@@ -48,22 +50,22 @@
                                     <div class="card-body py-4">
                                         <div class="media">
                                             <div class="d-inline-block mt-2 mr-3">
-                                                <?php if(($_SESSION["AVERAGE-TEMPS"] >= 36) && ($_SESSION["AVERAGE-TEMPS"] <= 37)): ?>
+                                                <?php if(($current_average >= 36) && ($current_average <= 37)): ?>
                                                     <i class="feather-lg text-success" data-feather="thermometer"></i>
                                                     <?php $alert="(Normal)";?>
                                                 <?php endif;?>
-                                                <?php if($_SESSION["AVERAGE-TEMPS"] < 36): ?>
+                                                <?php if($current_average < 36): ?>
                                                     <i class="feather-lg text-primary" data-feather="thermometer"></i>
                                                     <?php $alert="(Baja)";?>
                                                 <?php endif;?>
-                                                <?php if($_SESSION["AVERAGE-TEMPS"] > 37): ?>
+                                                <?php if($current_average > 37): ?>
                                                     <i class="feather-lg text-danger" data-feather="thermometer"></i>
                                                     <?php $alert="(Alta)";?>
                                                 <?php endif;?>
                                                 
                                             </div>
                                             <div class="media-body">
-                                                <h3 class="mb-2"><?=$_SESSION["AVERAGE-TEMPS"]?>°C</h3>
+                                                <h3 class="mb-2"><?=$current_average?>°C</h3>
                                                 <div class="mb-0">Temperatura promedio <?=$alert?></div>
                                             </div>
                                         </div>
@@ -95,7 +97,7 @@
                                     <div class="card-body">
                                         <br>
                                         <div class="media">
-                                        <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
+                                            <canvas width=400px height="200" id="chartjs-dashboard-pie"></canvas>
                                             <br>
                                         </div>
                                         <br>
@@ -112,15 +114,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-primary"></i> Bajos (< 36°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-LOW']?></td>
+                                                    <td class="text-right"><?=$current_low?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-success"></i> Normales (36°C - 37°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-NORMAL']?></td>
+                                                    <td class="text-right"><?=$current_normal?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><i class="fas fa-square-full text-danger"></i> Altos (> 37°C)</td>
-                                                    <td class="text-right"><?=$_SESSION['CURRENTDATE-HIGH']?></td>
+                                                    <td class="text-right"><?=$current_high?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -134,12 +136,16 @@
                     </div>
                 </main>
             </div>
+           
         </div>
+           
 
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="<?=URL?>public/js/plotly.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
 
+        
+
+        
 
         <script>
             function getRandomColor() {
@@ -150,6 +156,7 @@
             }
             return color;
             }
+
             var trace1 = {
             type: 'line',
             y:[37.5,36.2,38,37.9,36.5,36,37,37.2],
@@ -177,27 +184,44 @@
                 // Pie chart
                 new Chart(document.getElementById("chartjs-dashboard-pie"), {
                     type: "pie",
+                    
                     data: {
-                        labels: ["Altos", "Normales", "Bajos"],
+                        labels: [
+                                    [ "Altos", "",
+                                    <?php if (isset($array_high)): ?>
+                                        <?php foreach ($array_high as $registry):?>
+                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                    ],
+                                    [ "Normales", "",
+                                    <?php if (isset($array_normal)): ?>
+                                        <?php foreach ($array_normal as $registry):?>
+                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                    ],
+                                    [ "Bajos", "",
+                                    <?php if (isset($array_low)): ?>
+                                        <?php foreach ($array_low as $registry):?>
+                                            "<?=ucwords(strtolower(utf8_encode($registry[0])))?> <?=$registry[1]?>°C",
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                    ],
+                                
+                                ],
                         datasets: [
                             {
-                                data: [<?=$_SESSION['CURRENTDATE-HIGH']?>, <?=$_SESSION['CURRENTDATE-NORMAL']?>, <?=$_SESSION['CURRENTDATE-LOW']?>],
-                                backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary, "#E8EAED"],
-                                borderColor:
-                                <?php if (((($_SESSION['CURRENTDATE-HIGH'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-NORMAL'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100) && ((($_SESSION['CURRENTDATE-LOW'] * 100) / $_SESSION['CURRENTDATE-ENTRIES']) !== 100)) {
-                                echo "'" ."#FFFFFF". "'"; 
-                                }
-                                else { 
-                                    echo "'" ."transparent"."'"; 
-                                }
-                                
-                                ?>,
+                                data: ["<?=$current_high?>", "<?=$current_normal?>", "<?=$current_low?>"],
+                                backgroundColor: [window.theme.danger, window.theme.success, window.theme.primary],
+                                borderColor:"<?=$border?>",
                             },
                         ],
                     },
                     options: {
                         responsive: !window.MSInputMethodContext,
                         maintainAspectRatio: false,
+                        
                         legend: {
                             display: false,
                         },

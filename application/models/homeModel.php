@@ -11,6 +11,7 @@ class HomeModel extends Model {
     private $employees_n;
     private $entries;
     private $tempsSum;
+    private $search;
     
 
     function __constructor() {
@@ -18,7 +19,8 @@ class HomeModel extends Model {
         $this->password = "";
         $this->auth = "";
         $this->message = "";
-        $this->hash = '';
+        $this->hash = "";
+        $this->search = "";
         $this->entries = [];
         $this->locations = [];
         $this->employees_n = [];
@@ -49,7 +51,7 @@ class HomeModel extends Model {
     }
 
     public function validateUser() {
-        
+        $this->searchUser();
         $this->user = strip_tags($this->user);
         $this->password = strip_tags($this->password);
         $this->encryption();
@@ -98,6 +100,10 @@ class HomeModel extends Model {
     }
 
     private function prepareSession() {
+
+        $_SESSION['DATE'] = "2021-02-19";
+        //$_SESSION['DATE'] = date("Y-m-d"); 
+
         // GET SESSION NAME
         $sql = "SELECT nombre_completo FROM empleado WHERE empleado=:e_number"; 
         $query = $this->db->prepare($sql);
@@ -107,6 +113,7 @@ class HomeModel extends Model {
         $_SESSION['NAME'] = $row[0]["nombre_completo"];
         $_SESSION['NAME'] = strtolower($_SESSION['NAME']);
         $_SESSION['NAME'] = ucwords($_SESSION['NAME']);
+        
 
         // GET SESSION LOCATIONS (NAME)
         $sql = "SELECT cve_ubicacion FROM ubicacion WHERE usuario = :e_number";
@@ -185,15 +192,14 @@ class HomeModel extends Model {
         $_SESSION['EMPLOYEES-N']=$this->employees_n;
 
         //GET CURRENT ACCESS
-        //$hora = date("Y-m-d");       
-        $hora = "2021-02-19";
+        
         foreach($_SESSION['LOCATIONS-CVE'] as $location) {
-            //$sql = "SELECT DISTINCT hora FROM marca WHERE clave = :clave";
+
             $sql = "SELECT datos, hora, consecutivo, clave FROM marca WHERE consecutivo IN (SELECT MAX(consecutivo) FROM marca GROUP BY datos) AND clave=:clave";
             $query = $this->db->prepare($sql);
             $query->execute(array(":clave" => $location));
             while($row = $query->fetch()){
-                if($hora == strtok($row["hora"]," ")){
+                if($_SESSION['DATE'] == strtok($row["hora"]," ")){
                     $this->entries[] = strtok($row["hora"]," ");
                 }
             }
@@ -202,7 +208,7 @@ class HomeModel extends Model {
         $_SESSION['CURRENTDATE-ENTRIES']=count($this->entries);
 
         //GET CURRENT AVERAGE TEMP     
-        $hora = "2021-02-19";
+        
         $temp = [];
         $temp2 = [];
 
@@ -216,29 +222,11 @@ class HomeModel extends Model {
             $query->execute(array(":clave" => $location));
             $temp = $query->fetchAll();
             foreach ($temp as $t) {
-                if($hora == strtok($t["hora"]," ")){
+                if($_SESSION['DATE'] == strtok($t["hora"]," ")){
                     $temp2[] = preg_split( "/[ =]/", $t["complemento"] );
                 }
             }
-
-            for ($i=0; $i < count($temp2); $i++){ 
-                $this->tempsSum += (double)$temp2[$i][7];
-
-                // GET TODAY LOW, NORMAL AND HIGH TEMPS
-
-                if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
-                    $_SESSION['CURRENTDATE-NORMAL']++;
-                }
-                else if ((double)$temp2[$i][7] < 36){
-                    $_SESSION['CURRENTDATE-LOW']++;
-                }
-                else {
-                    $_SESSION['CURRENTDATE-HIGH']++;
-                }
-            }
-            $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
-            $this->tempsSum = number_format($this->tempsSum, 2);
-            
+  
             //FOR OPTIMIZING
             //if($hora == strtok(w$row["hora"]," ")){
               //  $temp[] = preg_split( "/[ =]/", $row["complemento"] );   
@@ -250,6 +238,24 @@ class HomeModel extends Model {
                 }*/
             //}
         }
+        for ($i=0; $i < count($temp2); $i++){ 
+            $this->tempsSum += (double)$temp2[$i][7];
+
+            // GET TODAY LOW, NORMAL AND HIGH TEMPS
+
+            if (((double)$temp2[$i][7] >= 36) && ((double)$temp2[$i][7] <= 37)) {
+                $_SESSION['CURRENTDATE-NORMAL']++;
+            }
+            else if ((double)$temp2[$i][7] < 36){
+                $_SESSION['CURRENTDATE-LOW']++;
+            }
+            else {
+                $_SESSION['CURRENTDATE-HIGH']++;
+            }
+        }
+        $this->tempsSum /= $_SESSION['CURRENTDATE-ENTRIES'];
+        $this->tempsSum = number_format($this->tempsSum, 2);
+
         $_SESSION['AVERAGE-TEMPS']=$this->tempsSum;
         // SEND MAIL NOTIFICATION
         $this->sendMail("jafp070901@hotmail.com",
@@ -257,6 +263,20 @@ class HomeModel extends Model {
 
         
 
+    }
+
+    public function searchUser() {
+
+        $sql = "SELECT n_empleado FROM usuario WHERE n_empleado=:search OR correo=:search"; 
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':search' => $this->search));
+        $row = $query->fetchAll();
+
+        if($row){
+            $this->auth = 1;
+            $this->setUser($row[0]["n_empleado"]);
+            
+        }
     }
 
     public function sendMail($to, $subject) {
@@ -303,6 +323,10 @@ class HomeModel extends Model {
         //ñmail($to, $subject, $message, implode("\r\n", $headers));
         mail($to, $subject, $message2, implode("\r\n", $headers));
 
+    }
+
+    public function setSearch($search) {
+        $this->search = $search;
     }
 
     public function getData() {

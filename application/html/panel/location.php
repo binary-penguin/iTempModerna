@@ -7,9 +7,9 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                                    <i class="align-middle" data-feather="settings"></i>
+                                    <i class="align-middle" data-feather="chevron-down"></i>
                                 </a>
-                                <img class="rounded-circle mr-3 float-end" src="<?=$_SESSION['PP']?>" width="80" height="80">
+                                <svg data-jdenticon-value="<?=$_SESSION['PP']?>" width="50" height="50"></svg>
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
@@ -142,6 +142,8 @@
 
         <script src="<?=URL?>public/js/app.js"></script>
         <script src="<?=URL?>public/js/plotly.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
+
 
         
 

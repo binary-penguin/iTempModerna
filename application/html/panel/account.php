@@ -8,9 +8,9 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                            <i class="align-middle" data-feather="settings"></i>
+                            <i class="align-middle" data-feather="chevron-down"></i>
                         </a>
-                        <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
+                        <svg data-jdenticon-value="<?=$_SESSION['PP']?>" width="50" height="50"></svg>
 
                         <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                         <span class="text-dark"><?=$_SESSION['NAME']?></span>
@@ -33,7 +33,7 @@
                         <div class="col-12 col-xl d-flex text-center">
                             <div class="card flex-fill">
                                 <div class="card-body">
-                                    <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="180" height="180" onclick="launchModal();"></svg>
+                                    <svg id="pp" class="pp" data-jdenticon-value="<?=$_SESSION['PP']?>" width="180" height="180" onclick="launchModal();"></svg>
                                     <br>
                                     <img id="r1">
                                     <h3><?=$_SESSION['NAME']?></h3>
@@ -66,60 +66,39 @@
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="<?=URL?>account/picture" method="POST">
-                        <div class="container-fluid align-items-center">
-                            <select class="image-picker" name="img-selected">
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX" selected>
-                                        https://drive.google.com/uc?export=view&id=1b_udoMtsboGIrBJh-9uIQrIgEExS8NAX</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1LbEfVq-RdRKNHD4NjUNHFPpythGJSorf">
-                                        https://drive.google.com/uc?export=view&id=1LbEfVq-RdRKNHD4NjUNHFPpythGJSorf</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1w6l0-RfOn5KzskAEGEezObidu12CFdSS">
-                                        https://drive.google.com/uc?export=view&id=1w6l0-RfOn5KzskAEGEezObidu12CFdSS</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1PQkfch_L9pzgh5Sy7sK0yo1IwVn5pJg4">
-                                        https://drive.google.com/uc?export=view&id=1PQkfch_L9pzgh5Sy7sK0yo1IwVn5pJg4</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1pwCp_WoieUwVDd3pW7BA5YIvVF2SfJYx">
-                                        https://drive.google.com/uc?export=view&id=1pwCp_WoieUwVDd3pW7BA5YIvVF2SfJYx</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1sHz3ti1JMuK77ARDS6oUp5-K3L4FMatD">
-                                        https://drive.google.com/uc?export=view&id=1sHz3ti1JMuK77ARDS6oUp5-K3L4FMatD</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=17AN545jqldzvLFSbGvNxKRN6-g4d49-L">
-                                        https://drive.google.com/uc?export=view&id=17AN545jqldzvLFSbGvNxKRN6-g4d49-L</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=1eIuh1TKbljULUwIwVL_KhuQZJJMoF7vG">
-                                        https://drive.google.com/uc?export=view&id=1eIuh1TKbljULUwIwVL_KhuQZJJMoF7vG</option>
-                                    <option data-img-src="https://drive.google.com/uc?export=view&id=14nepZgEy5nbs7Wfhxq9hQ0Fy5_a8WL31">
-                                        https://drive.google.com/uc?export=view&id=14nepZgEy5nbs7Wfhxq9hQ0Fy5_a8WL31</option>
-                            </select>
-                        </div>
-                        
+                    <form action="<?=URL?>account/changePicture" method="POST">
+                            <div class="container-fluid">
+                                <br><br>
+                                <div class="row text-center">
+                                    <div class="col-sm-12 col-md-5 mx-auto">
+                                        <h3 class="d-inline">Imagen de Perfil Actual</h3>
+                                        <svg class="d-inline" data-jdenticon-value="<?=$_SESSION['PP']?>" width="200" height="200"></svg>
+                                        
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-12 col-md-5 mx-auto" id="wrapper">
+                                        <h3 class="d-inline">Nueva Imagen de Perfil</h3>
+                                        <svg id="n_pp"  data-jdenticon-value="<?=$_SESSION['PP']?>" width="200" height="200"></svg>           
+                                        <br><br>
+                                        <button type="button" class="btn btn-dark" onclick="generatePP();">Generar</button>
+                                        <input type="text" id="str_new" class="d-none" name="new-pp" value=""/>
+                                    </div>
+                               </div>
+                            </div>
+                            <br><br>     
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
-                    <button type="submit" name="b-image" class="btn btn-warning" >Guardar</button>
+                <div class="modal-footer mx-auto">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Mantener Imagen Actual</button>
+                    <button type="submit" id="b_image" name="b-image" class="btn btn-warning" disabled>Guardar Nueva Imagen</button>
                 </div>
-                </form>
+                </form>  
+                
                 </div>
             </div>
         </div>
         
     </div>
     </div>
-    <script>
-
-        var mySVG    = document.querySelector('pp'),      // Inline SVG element
-            tgtImage = document.querySelector('r1'),      // Where to draw the result
-            can      = document.createElement('canvas'), // Not shown on page
-            ctx      = can.getContext('2d'),
-            loader   = new Image;                        // Not shown on page
-
-        loader.width  = can.width  = tgtImage.width;
-        loader.height = can.height = tgtImage.height;
-        loader.onload = function(){
-        ctx.drawImage( loader, 0, 0, loader.width, loader.height );
-        tgtImage.src = can.toDataURL();
-        };
-        var svgAsXML = (new XMLSerializer).serializeToString( mySVG );
-        loader.src = 'data:image/svg+xml,' + encodeURIComponent( svgAsXML );
-    
-    </script>
     <script src="<?=URL?>public/js/app.js"></script>
     <script src="<?= URL?>public/js/contra.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
@@ -129,12 +108,21 @@
     <script src='<?=URL?>public/js/jquery-3.6.0.js'></script>
        <script src='<?=URL?>public/js/image-picker.js'></script>
        <script>
-        $(function() {
-            // initial configuration of the plugin
-            $("select").imagepicker();
-            // re-sync the plugin
-            $("select").data('picker').sync_picker_with_select();
-        });
+            function generatePP() {
+                // Enable submit btn
+
+                document.getElementById("b_image").removeAttribute("disabled");
+
+                // Generate random str and assign it to jdenticon
+                var str = Math.random().toString(36).substr(2, 3);
+                jdenticon.update("#n_pp", str);
+                document.getElementById("str_new").removeAttribute("value");
+                document.getElementById("str_new").setAttribute("value", str);
+     
+
+            }
+        
+            
         </script>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>
 

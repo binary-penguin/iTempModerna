@@ -33,9 +33,9 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                                    <i class="align-middle" data-feather="settings"></i>
+                                    <i class="align-middle" data-feather="chevron-down"></i>
                                 </a>
-                                <svg id="pp" class="rounded-circle pp" data-jdenticon-value="Sebastian" width="40" height="40"></svg>
+                                <svg data-jdenticon-value="<?=$_SESSION['PP']?>" width="50" height="50"></svg>
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <span class="text-dark"><?=$_SESSION['NAME']?></span>
                                 </a>
@@ -60,7 +60,7 @@
                                     <div class="card flex-fill">
                                         <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-12 col-lg-3 col-xl-3">
+                                                    <div class="col-md-12 col-lg-4 col-xl-3">
                                                         <i class="feather-lg text-secondary" data-feather="user-plus"></i>
                                                         <h3>Datos Personales</h3>
                                                         <br>
@@ -117,7 +117,7 @@
                                                     <div class="card flex-fill">
                                                         <div class="card-body">
                                                             <div class="row">
-                                                                    <div class="col-md-12 col-lg-3 col-xl-3">
+                                                                    <div class="col-md-12 col-lg-4 col-xl-3">
                                                                         <i class="feather-lg text-secondary" data-feather="eye"></i>
                                                                         <h3>Establecer Permisos</h3>
                                                                         <br>

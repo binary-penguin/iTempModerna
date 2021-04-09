@@ -12014,7 +12014,7 @@ footer.footer ul {
     padding: 0.1rem 0.8rem;
     display: block;
     font-size: 1.5rem;
-    color: #f09f08;
+    color: #444444;
     -webkit-transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
     transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
     line-height: 1.4;
@@ -12027,7 +12027,7 @@ footer.footer ul {
 .nav-flag:hover,
 .nav-icon.active,
 .nav-icon:hover {
-    color: #f09f08;
+    color: #444444;
 }
 .nav-flag .feather,
 .nav-flag svg,

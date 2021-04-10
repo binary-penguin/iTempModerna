@@ -1,80 +1,84 @@
 <?php
 
-class Node {
-	public $empleado;
-    public $nombre;
-    public $temperatura;
-    public $fecha;
-    public $tiempo;
-    public $ubicacion;
-	public $next;
+class Report extends Controller {
+    
+    public function __construct() {
+        $this->view = $this->loadView("reportView", "report");
+        $this->model = $this->loadModel("reportModel");
 
-	public function __construct($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion) {
-		$this->data = $empleado;
-        $this->nombre = $nombre;
-        $this->temperatura = $nombre;
-        $this->fecha = $tiempo;
-        $this->ubicacion = $ubicacion;
-        $this->next = NULL;
-	}
-    public function getData(){
-        return $this->data;
+        $this->verifier =[ 
+            "pass"=>TRUE, 
+            "block"=>FALSE 
+        ]; 
+
+        $this->view->renderPanel(array("hell" => 3));
+        
     }
+
+    public function generate() {
+
+        if (isset($_GET["submit_report"]) && isset($_GET["check"])) {
+            
+            if ($this->valueVerifier()) {
+                $this->model->setCheck($_GET["check"]);
+                $this->model->setCbx($_GET['check']);
+                $this->model->setFilter(
+                    array(
+                    "dia" => intval($_GET['f1']),
+                    "mes" => intval($_GET['f2']),
+                    "ano" => intval($_GET['f3']),
+                    "tem" => $_GET['f4'],
+                    "loc" => $_GET['f5']
+                    )
+                );
+                
+                $this->model->queryProcessor();
+                $this->view->renderPanel($this->model->getData());
+            }
+            
+        }  
+    }
+
+
+    private function valueVerifier(){ 
+        if(isset($_GET['check'])){ 
+            $assign = [ 
+                "dia" => 'f1', 
+                "mes" => 'f2', 
+                "ano" => 'f3', 
+                "tem" => 'f4', 
+                "loc" => 'f5' 
+            ]; 
+            $i=1; 
+            $matcher = []; 
+            foreach($_GET['check'] as $checked){ 
+                for($i;$i<=count($_GET['check']);){ 
+                    if($_GET[$assign[$checked]]!="none"){ 
+                        //echo $checked." is checked and selected"."<br>"; 
+                        $matcher[$_GET[$assign[$checked]]] = $this->verifier['pass']; 
+                    } 
+                    else{ 
+                        //echo $checked." is checked but not selected"."<br>"; 
+                        $matcher[$_GET[$assign[$checked]]] = $this->verifier['block']; 
+                    } 
+                    $i++; 
+                    break; 
+                } 
+            } 
+            $cnt = 0; 
+            foreach($matcher as $pass){ 
+                if($pass==TRUE){ 
+                    $cnt++; 
+                } 
+            } 
+            if($cnt==count($_GET['check'])){ 
+                //echo "match true"."<br>"; 
+                return true; //Returns true if the Select menu (values[s]) matches the Checkboxes checked 
+            } 
+            else{ 
+                //echo "match false"."<br>"; 
+                return false; //Returns false if the Select menu (value[s]) unmatches the Checkboxes checked 
+            } 
+        } 
+    } 
 }
-
-class LinkedList{
-    private $h = NULL;
-    private $t = NULL;
-
-    public function queue($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion){
-        $n = new Node($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion);
-
-        if($this->h == NULL){
-            $this->h = $n;
-            $this->h->empleado = $empleado;
-            $this->h->nombre = $nombre;
-            $this->h->temperatura =$temperatura;
-            $this->h->fecha = $fecha;
-            $this->h->tiempo = $tiempo;
-            $this->h->ubicacion = $ubicacion;
-            $this->t = $n;
-        }
-        else{
-            $this->t->next = $n;
-            $this->t = $this->t->next;
-            $this->t->empleado = $empleado;
-            $this->t->nombre = $nombre;
-            $this->t->temperatura =$temperatura;
-            $this->t->fecha = $fecha;
-            $this->t->tiempo = $tiempo;
-            $this->t->ubicacion = $ubicacion;
-        }
-    }
-    public function delete(){
-        //drop data
-    }
-    public function display(){
-        $it = $this->h;
-        while($it!=NULL){
-            echo "<tr>".
-                    "<td>".$it->empleado."</td>".
-                    "<td>".$it->nombre."</td>".
-                    "<td>".$it->temperatura."</td>".
-                    "<td>".$it->fecha."</td>".
-                    "<td>".$it->tiempo."</td>".
-                    "<td>".$it->ubicacion."</td>".
-                 "</tr>";
-            $it = $it->next;
-        }
-    }
-}
-/*
-echo "<tr>".
-"<td>".$it->empleado."</td>"."<br>".
-"<td>".$it->nombre."</td>"."<br>".
-"<td>".$it->temperatura."</td>"."<br>".
-"<td>".$it->fecha."</td>"."<br>".
-"<td>".$it->tiempo."</td>"."<br>".
-"<td>".$it->ubicacion."</td>"."<br>"."<br>"."<hr>".
-"</tr>";
-*/

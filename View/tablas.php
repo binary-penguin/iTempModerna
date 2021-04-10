@@ -125,10 +125,10 @@
                         <div class="container-fluid">
                             <form action="" name="request" method="GET">
                                 <div class="row">
-                                    <input  type="checkbox" value="dia" name="check[]" />
+                                    <input  type="checkbox" value="dia" name="check[]" onclick="show_filter('s1')"/>
                                     <h5>Dia</h5>
                                 </div>
-                                <select name="f1" id="s1">
+                                <select name="f1" id="s1" style="display:none">
                                     <option value="none" selected="none">Select</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -163,10 +163,10 @@
                                     <option value="31">31</option>
                                 </select>
                                 <div class="row">
-                                    <input type="checkbox" value="mes" name="check[]" />
+                                    <input type="checkbox" value="mes" name="check[]" onclick="show_filter('s2')"/>
                                     <h5>Mes</h5>
                                 </div>
-                                <select name="f2" id="s2">
+                                <select name="f2" id="s2" style="display: none">
                                     <option value="none" selected="none">Select</option>
                                     <option value="1">ENERO</option>
                                     <option value="2">FEBRERO</option>
@@ -182,10 +182,10 @@
                                     <option value="12">DICIEMBRE</option>
                                 </select>
                                 <div class="row">
-                                    <input  type="checkbox" value="ano" name="check[]" />
+                                    <input  type="checkbox" value="ano" name="check[]" onclick="show_filter('s3')"/>
                                     <h5>Año</h5>
                                 </div>
-                                <select name="f3" id="s3">
+                                <select name="f3" id="s3" style="display: none">
                                     <option value="none" selected="none">Select</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -200,10 +200,10 @@
                                     <option value="2011">2011</option>
                                 </select>
                                 <div class="row">
-                                    <input  type="checkbox" value="tem" name="check[]" />
+                                    <input  type="checkbox" value="tem" name="check[]" onclick="show_filter('s4')"/>
                                     <h5>Temperatura</h5>
                                 </div>
-                                <select name="f4" id="s4">
+                                <select name="f4" id="s4" style="display: none">
                                     <option value="none" selected="none">Select</option>
                                     <option value="nominal">Normal</option>
                                     <option value="advisory">Consultiva</option>
@@ -211,10 +211,10 @@
                                     <option value="warning">Peligrosa</option>
                                 </select>
                                 <div class="row">
-                                    <input  type="checkbox" value="loc" name="check[]" />
+                                    <input  type="checkbox" value="loc" name="check[]" onclick="show_filter('s5')"/>
                                     <h5>Localidad</h5>
                                 </div>
-                                <select name="f5" id="s5">
+                                <select name="f5" id="s5" style="display: none">
                                     <option value="none" selected="none">Select</option>
                                     <option value="cjrz194960019">Mofesa Navojoa PROFACE X</option>
                                     <option value="ckjb201760199">VIGILANCIA PIRINEOS PROFACE XTD</option>
@@ -376,6 +376,16 @@
                     var textotr = tr.innerText.toLowerCase();
                     tr.className = textotr.indexOf(valorabuscar) >= 0 ? "mostrar" : "ocultar";
                 }
+            }
+        </script>
+        <script>
+            function show_filter(inputId){
+                if (document.getElementById(inputId).style.display=="none"){
+                    document.getElementById(inputId).style.display="block";
+                }else{
+                    document.getElementById(inputId).style.display="none";
+                }
+                
             }
         </script>
     </body>

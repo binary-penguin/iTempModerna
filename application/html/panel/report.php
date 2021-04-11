@@ -32,7 +32,7 @@
                             <h1>Reporte Personalizado</h1>
                         </div>
                         <div class="container-fluid">
-                            <form action="" name="request" method="GET">
+                            <form action="<?=URL?>report/generate" method="GET">
                                 <div class="row">
                                     <input  type="checkbox" value="dia" name="check[]" />
                                     <h5>Dia</h5>
@@ -166,12 +166,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php 
-                                            if(isset($_GET['submit'])){
-                                                require 'application/models/reportModel.php'; 
-                                                $structure->display(); 
-                                            }
-                                            ?>
+                                            <?php if(isset($_GET['submit'])): ?>
+                                                <?php $it = $head;?>
+                                                <?php while($it!=NULL):?>
+                                                    <tr>
+                                                        <td><?=$it->empleado?></td>
+                                                        <td><?=$it->nombre?></td>
+                                                        <td><?=$it->temperatura?></td>
+                                                        <td><?=$it->fecha?></td>
+                                                        <td><?=$it->tiempo?></td>
+                                                        <td><?=$it->ubicacion?></td>
+                                                    </tr>
+                                                    <?php $it = $it->next;?>
+                                                <?php endwhile;?>
+                                            <?php endif;?>
                                         </tbody>
                                     </table>
                                 </div>

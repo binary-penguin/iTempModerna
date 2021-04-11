@@ -1,11 +1,7 @@
 <?php
-require 'controller.php';
-
 
 class ReportModel extends Model{
 
-    private $pdo;
-    private $query;
     private $nombre;
     private $empleado;
     private $temperature;
@@ -16,32 +12,15 @@ class ReportModel extends Model{
     private $ano;
     private $mes;
     private $dia;
-    private $complemento;
     private $missing;
     private $filter;
     private $granter = [];
     private $cbx;
     private $verifier;
-    private $rc;
+    private $check;
+    private $select = [];
+    private $head = [];
     
-    public function __construct(){
-        $this->verifier =[
-            "pass"=>TRUE,
-            "block"=>FALSE
-        ];
-        $this->rc = new ReportController;
-        
-        $this->qry = $this->db->query('SELECT emp.empleado,emp.nombre_completo,mac.hora,mac.complemento
-                        ,lec.clave,lec.descripcion
-                        FROM marca AS mac
-                        INNER JOIN empleado AS emp
-                        ON emp.empleado = mac.datos
-                        INNER JOIN lector AS lec
-                        ON lec.clave = mac.clave WHERE mac.clave="ckjf202060537"');
-    
-    }
-
-        
     public function temperatureProcessor($complemento){
         list($d,$d1,$d2,$d3,$d4) = explode(" ",$complemento);
         list($d,$d1) = explode("=",$d3);
@@ -50,8 +29,7 @@ class ReportModel extends Model{
     }
 
     public function valueVerifier(){
-        $this->rc->checkSet();
-        if(isset($this->rc->check)){
+        if(isset($this->check)){
             $assign = [
                 "dia" => 'f1',
                 "mes" => 'f2',
@@ -61,8 +39,8 @@ class ReportModel extends Model{
             ];
             $i=1;
             $matcher = [];
-            foreach($this->rc->check as $checked){
-                for($i;$i<=count($this->rc->check);){
+            foreach($this->check as $checked){
+                for($i;$i<=count($this->check);){
                     if($_GET[$assign[$checked]]!="none"){
                         //echo $checked." is checked and selected"."<br>";
                         $matcher[$_GET[$assign[$checked]]] = $this->verifier['pass'];
@@ -81,7 +59,7 @@ class ReportModel extends Model{
                     $cnt++;
                 }
             }
-            if($cnt==count($this->rc->check)){
+            if($cnt==count($this->check)){
                 //echo "match true"."<br>";
                 return true; //Returns true if the Select menu (values[s]) matches the Checkboxes checked
             }
@@ -93,14 +71,13 @@ class ReportModel extends Model{
     }
     
     public function getValues(){
-        $this->cbx = $this->rc->check;
-        $this->rp->selectSet();
+        $this->cbx = $this->check;
         $this->filter = [
-            "dia" => $this->rp->select['dia'],
-            "mes" => $this->rp->select['mes'],
-            "ano" => $this->rp->select['ano'],
-            "tem" => $this->rp->select['tem'],
-            "loc" => $this->rp->select['loc']
+            "dia" => $this->select['dia'],
+            "mes" => $this->select['mes'],
+            "ano" => $this->select['ano'],
+            "tem" => $this->select['tem'],
+            "loc" => $this->select['loc']
         ];
     }
     
@@ -211,6 +188,21 @@ class ReportModel extends Model{
     }
                                                                                                                 
     public function queryProcessor(){
+
+        $this->verifier =[
+            "pass"=>TRUE,
+            "block"=>FALSE
+        ];
+        
+        $this->qry = $this->db->query('SELECT emp.empleado,emp.nombre_completo,mac.hora,mac.complemento
+                        ,lec.clave,lec.descripcion
+                        FROM marca AS mac
+                        INNER JOIN empleado AS emp
+                        ON emp.empleado = mac.datos
+                        INNER JOIN lector AS lec
+                        ON lec.clave = mac.clave WHERE mac.clave="ckjf202060537"');
+
+
         $structure = new LinkedList;
         if($this->valueVerifier()){
             $this->getValues();
@@ -246,12 +238,112 @@ class ReportModel extends Model{
             else{
                 $structure->queue($this->empleado,$this->nombre,$this->temperature,$this->fecha,$this->tiempo,$this->location);
             }
-        } 
-        $structure->display();      
+        }
+        echo "Haciendo head";
+        $this->head = $structure->getHead(); 
+    }
+
+    public function setCheck($check) {
+        $this->check = $check;
+    }
+
+    public function setSelect($select) {
+        $this->select = $select;
+    }
+
+    public function getData() {
+        return [
+            "head" => $this->head
+        ];
+    }
+
+}
+
+
+
+
+
+class Node {
+	public $empleado;
+    public $nombre;
+    public $temperatura;
+    public $fecha;
+    public $tiempo;
+    public $ubicacion;
+	public $next;
+
+	public function __construct($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion) {
+		$this->data = $empleado;
+        $this->nombre = $nombre;
+        $this->temperatura = $nombre;
+        $this->fecha = $tiempo;
+        $this->ubicacion = $ubicacion;
+        $this->next = NULL;
+	}
+    public function getData(){
+        return $this->data;
     }
 }
 
-$emp = new ReportModel;
-$emp->queryProcessor();
+class LinkedList{
+    private $h = NULL;
+    private $t = NULL;
 
+    public function queue($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion){
+        $n = new Node($empleado,$nombre,$temperatura,$fecha,$tiempo,$ubicacion);
 
+        if($this->h == NULL){
+            $this->h = $n;
+            $this->h->empleado = $empleado;
+            $this->h->nombre = $nombre;
+            $this->h->temperatura =$temperatura;
+            $this->h->fecha = $fecha;
+            $this->h->tiempo = $tiempo;
+            $this->h->ubicacion = $ubicacion;
+            $this->t = $n;
+        }
+        else{
+            $this->t->next = $n;
+            $this->t = $this->t->next;
+            $this->t->empleado = $empleado;
+            $this->t->nombre = $nombre;
+            $this->t->temperatura =$temperatura;
+            $this->t->fecha = $fecha;
+            $this->t->tiempo = $tiempo;
+            $this->t->ubicacion = $ubicacion;
+        }
+    }
+    public function delete(){
+        //drop data
+    }
+    public function display(){
+        $it = $this->h;
+        while($it!=NULL){
+            /*
+            echo "<tr>".
+                    "<td>".$it->empleado."</td>".
+                    "<td>".$it->nombre."</td>".
+                    "<td>".$it->temperatura."</td>".
+                    "<td>".$it->fecha."</td>".
+                    "<td>".$it->tiempo."</td>".
+                    "<td>".$it->ubicacion."</td>".
+                 "</tr>";
+            */
+            $it = $it->next;
+        }
+    }
+
+    public function getHead() {
+        return $this->h;
+    }
+}
+/*
+echo "<tr>".
+"<td>".$it->empleado."</td>"."<br>".
+"<td>".$it->nombre."</td>"."<br>".
+"<td>".$it->temperatura."</td>"."<br>".
+"<td>".$it->fecha."</td>"."<br>".
+"<td>".$it->tiempo."</td>"."<br>".
+"<td>".$it->ubicacion."</td>"."<br>"."<br>"."<hr>".
+"</tr>";
+*/

@@ -1,33 +1,28 @@
 <?php
 require 'controller.php';
-define('URL', 'http://localhost/iTempModerna/');
-define('TYPE', 'mysql');
-define('HOST', 'localhost');
-define('NAME', 'moderna2');
-define('USER', 'root');
-define('PASS', '');
-define('PORT', 3306);
 
-class FiltroDeBusqueda{
-    public $pdo;
-    public $query;
-    public $nombre;
-    public $empleado;
-    public $temperature;
-    public $fecha;
-    public $tiempo;
-    public $location;
-    public $clave;
-    public $ano;
-    public $mes;
-    public $dia;
-    public $complemento;
-    public $missing;
-    public $filter;
-    public $granter = [];
-    public $cbx;
-    public $verifier;
-    public $rc;
+
+class ReportModel extends Model{
+
+    private $pdo;
+    private $query;
+    private $nombre;
+    private $empleado;
+    private $temperature;
+    private $fecha;
+    private $tiempo;
+    private $location;
+    private $clave;
+    private $ano;
+    private $mes;
+    private $dia;
+    private $complemento;
+    private $missing;
+    private $filter;
+    private $granter = [];
+    private $cbx;
+    private $verifier;
+    private $rc;
     
     public function __construct(){
         $this->verifier =[
@@ -35,20 +30,18 @@ class FiltroDeBusqueda{
             "block"=>FALSE
         ];
         $this->rc = new ReportController;
-    }
-
-    public function dbConnection(){
-        $dsn = 'mysql:host='.HOST.";".'dbname='.NAME.";".'port='.PORT;
-        $this->pdo = new PDO($dsn,USER,PASS);
-        $this->qry = $this->pdo->query('SELECT emp.empleado,emp.nombre_completo,mac.hora,mac.complemento
+        
+        $this->qry = $this->db->query('SELECT emp.empleado,emp.nombre_completo,mac.hora,mac.complemento
                         ,lec.clave,lec.descripcion
                         FROM marca AS mac
                         INNER JOIN empleado AS emp
                         ON emp.empleado = mac.datos
                         INNER JOIN lector AS lec
                         ON lec.clave = mac.clave WHERE mac.clave="ckjf202060537"');
+    
     }
 
+        
     public function temperatureProcessor($complemento){
         list($d,$d1,$d2,$d3,$d4) = explode(" ",$complemento);
         list($d,$d1) = explode("=",$d3);
@@ -258,8 +251,7 @@ class FiltroDeBusqueda{
     }
 }
 
-$emp = new FiltroDeBusqueda;
-$emp->dbConnection();
+$emp = new ReportModel;
 $emp->queryProcessor();
 
 
